@@ -57,6 +57,7 @@ namespace ariel {
         void initialize_tile_to_vertex();
         void initialize_vertex_to_vertex();
         void  initialize_edge_to_edge();
+        void initialize_vertex_to_edge();
 
     };
 }

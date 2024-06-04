@@ -22,5 +22,11 @@ int main() {
 //    Board board;
 //    board.printBoard();  // Print the board
 
+Player player("Alice");
+Player player2("Bob");
+Player player3("Charlie");
+
+
+
     return 0;
 }
