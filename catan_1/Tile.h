@@ -46,7 +46,7 @@ namespace ariel {
     class Tile {
     public:
         enum Type { FOREST, HILL, PASTURE, FIELD, MOUNTAIN, DESERT };
-        enum city { CITY, SETTLEMENT, NONE };
+        enum city { SETTLEMENT, CITY, NONE };
         Tile(Type type, int id);
         int id;
         Type getType() const;

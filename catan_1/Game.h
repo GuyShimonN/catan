@@ -14,7 +14,7 @@ namespace ariel {
         bool GameOver();
         int diceRoll();
         void printWinner();
-
+        bool chack_valid_city(int ver_id);
 
     private:
         Board board;
@@ -22,7 +22,6 @@ namespace ariel {
         Player player2;
         Player player3;
         void buildSettlement_for_the_first(Player &player,int vertex_id);
-        void buildRoad_for_the_first(Player &player);
 
 
     };

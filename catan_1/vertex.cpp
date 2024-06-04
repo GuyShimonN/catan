@@ -23,7 +23,7 @@
 
 namespace ariel {
 
-    vertex::vertex(int id, int sub_id) : id(id), sub_id(sub_id), player(0) {
+    vertex::vertex(int id, int sub_id) : id(id), sub_id(sub_id), city(Tile::NONE) {
         // Initialize tiles as an empty vector
     }
 
@@ -33,6 +33,12 @@ namespace ariel {
 
     void vertex::add_edge(ariel::edge e) {
         this->edges.push_back(e);
+    }
+    void vertex::set_city(Tile::city cu){
+        this->city=cu;
+    }
+    std::string vertex::set_player_id(std::string id){
+        this->player_id=id;
     }
 
 } // namespace ariel

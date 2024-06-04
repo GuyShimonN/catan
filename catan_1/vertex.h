@@ -51,17 +51,21 @@ namespace ariel {
         void set_tiles(const std::vector<ariel::Tile>& tiles) { this->tiles = tiles; }
         int get_id() { return id; }
         int get_sub_id() { return sub_id; }
-        int get_player() { return player; }
+        int get_city() { return city; }
         void add_vertex(vertex v);
         void add_edge(edge e);
-
+        std::vector<vertex>get_verrices(){return vertices;}
+        void set_city(ariel::Tile::city cu );
+        std::string get_player_id(){return player_id;}
+        std::string set_player_id(std::string id);
     private:
         int id;
         int sub_id;
         std::vector<ariel::Tile> tiles;
         std::vector<vertex> vertices;
         std::vector<edge> edges;
-        int player;
+        Tile::city city;
+        std::string player_id;
     };
 }
 
