@@ -54,6 +54,7 @@ namespace ariel {
         Resource::Type getResource() const;
         void setNumber(int number);
         void addvertex(vertex v);
+        std::string toString() const;
 
     private:
         Type type;

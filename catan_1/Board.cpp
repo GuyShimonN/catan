@@ -52,7 +52,7 @@
 //    }
 //}
 
-
+#include <iomanip>
 #include "Board.h"
 #include <algorithm>
 #include <random>
@@ -112,51 +112,23 @@ namespace ariel {
     const std::vector<Tile> &Board::getTiles() const {
         return tiles;
     }
+
+
     void Board::printBoard() const {
         std::cout << "**************** CATAN BOARD ****************" << std::endl;
+        std::cout << "sae   "<< tiles[2].toString()<<"  "<< tiles[1].toString()<<"  "<< tiles[0].toString()<<"  sea"<<std::endl;
+        std::cout << "sae   "<< tiles[6].toString()<<"  "<< tiles[5].toString()<<"  "<< tiles[4].toString()<<"  "<< tiles[3].toString()<<"  sea"<<std::endl;
+        std::cout << "sae   "<< tiles[11].toString()<<"  "<< tiles[10].toString()<<"  "<< tiles[9].toString()<<"  "<< tiles[8].toString()<<"  "<< tiles[7].toString()<<"  sea"<<std::endl;
+        std::cout << "sae   "<< tiles[15].toString()<<"  "<< tiles[14].toString()<<"  "<< tiles[13].toString()<<"  "<< tiles[12].toString()<<"  sea"<<std::endl;
+        std::cout << "sae   "<< tiles[18].toString()<<"  "<< tiles[17].toString()<<"  "<< tiles[16].toString()<<"  sea"<<std::endl;
 
-        for (int row = 0; row < 7; ++row) {
-            for (int col = 0; col < 7; ++col) {
-                int index = row * 7 + col;
-                if (index < 19) {
-                    const Tile& tile = tiles[index];
-                    std::string resource;
-                    switch (tile.getType()) {
-                        case Tile::FOREST:
-                            resource = "wood";
-                            break;
-                        case Tile::HILL:
-                            resource = "brick";
-                            break;
-                        case Tile::PASTURE:
-                            resource = "wool";
-                            break;
-                        case Tile::FIELD:
-                            resource = "wheat";
-                            break;
-                        case Tile::MOUNTAIN:
-                            resource = "iron";
-                            break;
-                        case Tile::DESERT:
-                            resource = "desert";
-                            break;
-                    }
-                    if (tile.getType() == Tile::DESERT) {
-                        std::cout << std::setw(6) << resource;
-                    } else {
-                        std::cout << std::setw(6) << resource << " " << tile.getNumber();
-                    }
-                } else {
-                    std::cout << std::setw(6) << "sea";
-                }
-                std::cout << " ";
-            }
-            std::cout << std::endl;
-        }
 
+        // Print the tiles
+
+
+        // Print the footer
         std::cout << "**********************************************" << std::endl;
     }
-
     void Board::initializeVertices() {
         // Clear the existing vertices
         vertices.clear();

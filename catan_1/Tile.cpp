@@ -29,3 +29,16 @@ void Tile::setNumber(int number) {
 void Tile::addvertex(vertex v){
     this->vertices.push_back(v);
 }
+std::string Tile:: toString() const {
+    std::string s;
+    switch (type) {
+        case FOREST: s = "FOREST"; break;
+        case HILL: s = "HILL"; break;
+        case PASTURE: s = "PASTURE"; break;
+        case FIELD: s = "FIELD"; break;
+        case MOUNTAIN: s = "MOUNTAIN"; break;
+        default: s = "DESERT"; break;
+    }
+    s= s + " " + std::to_string(this->number);
+    return s;
+}
