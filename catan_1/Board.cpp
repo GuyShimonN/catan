@@ -69,6 +69,7 @@ namespace ariel {
         assignNumbers();
         initialize_tile_to_vertex();
         initialize_vertex_to_vertex();
+        initialize_edge_to_edge();
     }
 
     void Board::initializeTiles() {
@@ -642,4 +643,338 @@ namespace ariel {
         vertices[53].add_vertex(vertices[52]);
 
     }
+
+    void  Board::initialize_edge_to_edge(){
+        edges[0].add_neighbor(edges[1]);
+        edges[0].add_neighbor(edges[5]);
+
+        edges[1].add_neighbor(edges[0]);
+        edges[1].add_neighbor(edges[2]);
+        edges[1].add_neighbor(edges[6]);
+
+        edges[2].add_neighbor(edges[1]);
+        edges[2].add_neighbor(edges[3]);
+        edges[2].add_neighbor(edges[6]);
+        edges[2].add_neighbor(edges[10]);
+
+        edges[3].add_neighbor(edges[2]);
+        edges[3].add_neighbor(edges[4]);
+        edges[3].add_neighbor(edges[10]);
+        edges[3].add_neighbor(edges[17]);
+
+        edges[4].add_neighbor(edges[3]);
+        edges[4].add_neighbor(edges[5]);
+        edges[4].add_neighbor(edges[17]);
+        edges[4].add_neighbor(edges[16]);
+
+        edges[5].add_neighbor(edges[0]);
+        edges[5].add_neighbor(edges[4]);
+        edges[5].add_neighbor(edges[16]);
+
+        edges[6].add_neighbor(edges[1]);
+        edges[6].add_neighbor(edges[2]);
+        edges[6].add_neighbor(edges[7]);
+
+        edges[7].add_neighbor(edges[6]);
+        edges[7].add_neighbor(edges[8]);
+        edges[7].add_neighbor(edges[11]);
+
+        edges[8].add_neighbor(edges[7]);
+        edges[8].add_neighbor(edges[9]);
+        edges[8].add_neighbor(edges[11]);
+        edges[8].add_neighbor(edges[15]);
+
+        edges[9].add_neighbor(edges[8]);
+        edges[9].add_neighbor(edges[10]);
+        edges[9].add_neighbor(edges[15]);
+        edges[9].add_neighbor(edges[21]);
+
+        edges[10].add_neighbor(edges[2]);
+        edges[10].add_neighbor(edges[3]);
+        edges[10].add_neighbor(edges[9]);
+        edges[10].add_neighbor(edges[21]);
+
+        edges[11].add_neighbor(edges[7]);
+        edges[11].add_neighbor(edges[12]);
+        edges[11].add_neighbor(edges[8]);
+
+
+        edges[12].add_neighbor(edges[11]);
+        edges[12].add_neighbor(edges[13]);
+
+        edges[13].add_neighbor(edges[12]);
+        edges[13].add_neighbor(edges[14]);
+        edges[13].add_neighbor(edges[27]);
+
+        edges[14].add_neighbor(edges[13]);
+        edges[14].add_neighbor(edges[27]);
+        edges[14].add_neighbor(edges[15]);
+        edges[14].add_neighbor(edges[24]);
+
+        edges[15].add_neighbor(edges[24]);
+        edges[15].add_neighbor(edges[9]);
+        edges[15].add_neighbor(edges[8]);
+        edges[15].add_neighbor(edges[14]);
+
+        edges[16].add_neighbor(edges[4]);
+        edges[16].add_neighbor(edges[5]);
+        edges[16].add_neighbor(edges[20]);
+
+        edges[17].add_neighbor(edges[4]);
+        edges[17].add_neighbor(edges[3]);
+        edges[17].add_neighbor(edges[18]);
+        edges[17].add_neighbor(edges[23]);
+
+        edges[18].add_neighbor(edges[17]);
+        edges[18].add_neighbor(edges[19]);
+        edges[18].add_neighbor(edges[23]);
+        edges[18].add_neighbor(edges[32]);
+
+
+
+        edges[19].add_neighbor(edges[18]);
+        edges[19].add_neighbor(edges[20]);
+        edges[19].add_neighbor(edges[31]);
+        edges[19].add_neighbor(edges[32]);
+
+        edges[20].add_neighbor(edges[16]);
+        edges[20].add_neighbor(edges[19]);
+        edges[20].add_neighbor(edges[31]);
+
+        edges[21].add_neighbor(edges[9]);
+        edges[21].add_neighbor(edges[10]);
+        edges[21].add_neighbor(edges[22]);
+        edges[21].add_neighbor(edges[26]);
+
+        edges[22].add_neighbor(edges[21]);
+        edges[22].add_neighbor(edges[23]);
+        edges[22].add_neighbor(edges[26]);
+        edges[22].add_neighbor(edges[36]);
+
+        edges[23].add_neighbor(edges[17]);
+        edges[23].add_neighbor(edges[18]);
+        edges[23].add_neighbor(edges[22]);
+        edges[23].add_neighbor(edges[36]);
+
+        edges[24].add_neighbor(edges[14]);
+        edges[24].add_neighbor(edges[15]);
+        edges[24].add_neighbor(edges[25]);
+        edges[24].add_neighbor(edges[30]);
+
+        edges[25].add_neighbor(edges[24]);
+        edges[25].add_neighbor(edges[26]);
+        edges[25].add_neighbor(edges[30]);
+        edges[25].add_neighbor(edges[39]);
+
+        edges[26].add_neighbor(edges[39]);
+        edges[26].add_neighbor(edges[25]);
+        edges[26].add_neighbor(edges[21]);
+        edges[26].add_neighbor(edges[22]);
+
+        edges[27].add_neighbor(edges[13]);
+        edges[27].add_neighbor(edges[14]);
+        edges[27].add_neighbor(edges[28]);
+
+        edges[28].add_neighbor(edges[27]);
+        edges[28].add_neighbor(edges[29]);
+        edges[28].add_neighbor(edges[45]);
+
+        edges[29].add_neighbor(edges[28]);
+        edges[29].add_neighbor(edges[30]);
+        edges[29].add_neighbor(edges[45]);
+
+        edges[30].add_neighbor(edges[29]);
+        edges[30].add_neighbor(edges[25]);
+        edges[30].add_neighbor(edges[24]);
+        edges[30].add_neighbor(edges[42]);
+
+        edges[31].add_neighbor(edges[20]);
+        edges[31].add_neighbor(edges[19]);
+        edges[31].add_neighbor(edges[35]);
+
+        edges[32].add_neighbor(edges[19]);
+        edges[32].add_neighbor(edges[18]);
+        edges[32].add_neighbor(edges[33]);
+        edges[32].add_neighbor(edges[38]);
+
+        edges[33].add_neighbor(edges[32]);
+        edges[33].add_neighbor(edges[34]);
+        edges[33].add_neighbor(edges[38]);
+        edges[33].add_neighbor(edges[52]);
+
+
+        edges[34].add_neighbor(edges[33]);
+        edges[34].add_neighbor(edges[35]);
+        edges[34].add_neighbor(edges[52]);
+
+        edges[35].add_neighbor(edges[34]);
+        edges[35].add_neighbor(edges[31]);
+
+        edges[36].add_neighbor(edges[22]);
+        edges[36].add_neighbor(edges[23]);
+        edges[36].add_neighbor(edges[37]);
+        edges[36].add_neighbor(edges[41]);
+
+        edges[37].add_neighbor(edges[36]);
+        edges[37].add_neighbor(edges[38]);
+        edges[37].add_neighbor(edges[41]);
+        edges[37].add_neighbor(edges[49]);
+
+        edges[38].add_neighbor(edges[32]);
+        edges[38].add_neighbor(edges[33]);
+        edges[38].add_neighbor(edges[37]);
+        edges[38].add_neighbor(edges[49]);
+
+        edges[39].add_neighbor(edges[25]);
+        edges[39].add_neighbor(edges[26]);
+        edges[39].add_neighbor(edges[40]);
+        edges[39].add_neighbor(edges[44]);
+
+        edges[40].add_neighbor(edges[39]);
+        edges[40].add_neighbor(edges[41]);
+        edges[40].add_neighbor(edges[44]);
+        edges[40].add_neighbor(edges[53]);
+
+        edges[41].add_neighbor(edges[37]);
+        edges[41].add_neighbor(edges[36]);
+        edges[41].add_neighbor(edges[40]);
+        edges[41].add_neighbor(edges[53]);
+
+        edges[42].add_neighbor(edges[30]);
+        edges[42].add_neighbor(edges[29]);
+        edges[42].add_neighbor(edges[43]);
+        edges[42].add_neighbor(edges[48]);
+
+        edges[43].add_neighbor(edges[42]);
+        edges[43].add_neighbor(edges[44]);
+        edges[43].add_neighbor(edges[48]);
+        edges[43].add_neighbor(edges[56]);
+
+        edges[44].add_neighbor(edges[40]);
+        edges[44].add_neighbor(edges[39]);
+        edges[44].add_neighbor(edges[43]);
+        edges[44].add_neighbor(edges[56]);
+
+        edges[45].add_neighbor(edges[29]);
+        edges[45].add_neighbor(edges[28]);
+        edges[45].add_neighbor(edges[46]);
+
+        edges[46].add_neighbor(edges[45]);
+        edges[46].add_neighbor(edges[47]);
+
+        edges[47].add_neighbor(edges[46]);
+        edges[47].add_neighbor(edges[48]);
+        edges[47].add_neighbor(edges[59]);
+
+        edges[48].add_neighbor(edges[47]);
+        edges[48].add_neighbor(edges[43]);
+        edges[48].add_neighbor(edges[42]);
+        edges[48].add_neighbor(edges[59]);
+
+        edges[49].add_neighbor(edges[37]);
+        edges[49].add_neighbor(edges[38]);
+        edges[49].add_neighbor(edges[50]);
+        edges[49].add_neighbor(edges[55]);
+
+
+        edges[50].add_neighbor(edges[49]);
+        edges[50].add_neighbor(edges[51]);
+        edges[50].add_neighbor(edges[55]);
+        edges[50].add_neighbor(edges[65]);
+
+        edges[51].add_neighbor(edges[52]);
+        edges[51].add_neighbor(edges[50]);
+        edges[51].add_neighbor(edges[65]);
+
+        edges[52].add_neighbor(edges[33]);
+        edges[52].add_neighbor(edges[34]);
+        edges[52].add_neighbor(edges[51]);
+
+        edges[53].add_neighbor(edges[41]);
+        edges[53].add_neighbor(edges[40]);
+        edges[53].add_neighbor(edges[54]);
+        edges[53].add_neighbor(edges[58]);
+
+        edges[54].add_neighbor(edges[53]);
+        edges[54].add_neighbor(edges[55]);
+        edges[54].add_neighbor(edges[58]);
+        edges[54].add_neighbor(edges[62]);
+
+        edges[55].add_neighbor(edges[50]);
+        edges[55].add_neighbor(edges[49]);
+        edges[55].add_neighbor(edges[54]);
+        edges[55].add_neighbor(edges[62]);
+
+        edges[56].add_neighbor(edges[44]);
+        edges[56].add_neighbor(edges[43]);
+        edges[56].add_neighbor(edges[57]);
+        edges[56].add_neighbor(edges[61]);
+
+        edges[57].add_neighbor(edges[56]);
+        edges[57].add_neighbor(edges[58]);
+        edges[57].add_neighbor(edges[61]);
+        edges[57].add_neighbor(edges[66]);
+
+        edges[58].add_neighbor(edges[54]);
+        edges[58].add_neighbor(edges[53]);
+        edges[58].add_neighbor(edges[57]);
+        edges[58].add_neighbor(edges[66]);
+
+        edges[59].add_neighbor(edges[48]);
+        edges[59].add_neighbor(edges[47]);
+        edges[59].add_neighbor(edges[60]);
+
+        edges[60].add_neighbor(edges[59]);
+        edges[60].add_neighbor(edges[61]);
+        edges[60].add_neighbor(edges[69]);
+
+        edges[61].add_neighbor(edges[60]);
+        edges[61].add_neighbor(edges[56]);
+        edges[61].add_neighbor(edges[57]);
+        edges[61].add_neighbor(edges[69]);
+
+        edges[62].add_neighbor(edges[55]);
+        edges[62].add_neighbor(edges[54]);
+        edges[62].add_neighbor(edges[63]);
+        edges[62].add_neighbor(edges[68]);
+
+        edges[63].add_neighbor(edges[62]);
+        edges[63].add_neighbor(edges[64]);
+        edges[63].add_neighbor(edges[68]);
+
+        edges[64].add_neighbor(edges[63]);
+        edges[64].add_neighbor(edges[65]);
+
+        edges[65].add_neighbor(edges[64]);
+        edges[65].add_neighbor(edges[50]);
+        edges[65].add_neighbor(edges[51]);
+
+        edges[66].add_neighbor(edges[57]);
+        edges[66].add_neighbor(edges[58]);
+        edges[66].add_neighbor(edges[67]);
+        edges[66].add_neighbor(edges[71]);
+
+        edges[67].add_neighbor(edges[66]);
+        edges[67].add_neighbor(edges[68]);
+        edges[67].add_neighbor(edges[71]);
+
+        edges[68].add_neighbor(edges[67]);
+        edges[68].add_neighbor(edges[63]);
+        edges[68].add_neighbor(edges[62]);
+
+        edges[69].add_neighbor(edges[60]);
+        edges[69].add_neighbor(edges[61]);
+        edges[69].add_neighbor(edges[70]);
+
+        edges[70].add_neighbor(edges[69]);
+        edges[70].add_neighbor(edges[71]);
+
+        edges[71].add_neighbor(edges[70]);
+        edges[71].add_neighbor(edges[66]);
+        edges[71].add_neighbor(edges[67]);
+
+
+
+    }
+
 }

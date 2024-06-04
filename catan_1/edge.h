@@ -44,10 +44,13 @@ namespace ariel {
         bool operator==(const edge &rhs) const;
         int get_id() const { return id; }
         int get_sub_id() const { return sub_id; }
+        void add_neighbor(edge e);
+        std::vector<edge> get_neighbors() const { return neighbors; }
 
     private:
         int id;
         int sub_id;
+        std::vector<edge>neighbors;
     };
 
 } // namespace ariel

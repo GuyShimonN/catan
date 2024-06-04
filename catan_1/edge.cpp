@@ -10,4 +10,11 @@ edge::edge ( int id,int sub_id){
     this->sub_id = sub_id;
 
 }
+bool edge::operator==(const edge &rhs) const {
+    return id == rhs.id &&
+           sub_id == rhs.sub_id;
 }
+void edge::add_neighbor(edge e){
+    this->neighbors.push_back(e);
+}
+} // namespace ariel
