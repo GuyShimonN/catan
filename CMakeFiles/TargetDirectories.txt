@@ -1,3 +1,0 @@
-/home/guy/CLionProjects/CPP_EX3_24-main/Catan/build/CMakeFiles/Catan.dir
-/home/guy/CLionProjects/CPP_EX3_24-main/Catan/build/CMakeFiles/edit_cache.dir
-/home/guy/CLionProjects/CPP_EX3_24-main/Catan/build/CMakeFiles/rebuild_cache.dir
