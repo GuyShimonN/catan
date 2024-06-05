@@ -53,8 +53,8 @@ namespace ariel {
         int getNumber() const;
         Resource::Type getResource() const;
         void setNumber(int number);
-        void addvertex(vertex v);
-        void add_edge(edge edge);
+        void addvertex(vertex* v);
+        void add_edge(edge* edge);
         std::string toString() const;
 
     private:
@@ -62,8 +62,8 @@ namespace ariel {
         int number;
 
         std::vector<std::pair<Player,city>> players;
-        std::vector<vertex> vertices;
-        std::vector<edge> edges;
+        std::vector<vertex*> vertices;
+        std::vector<edge*> edges;
     };
 
 } // namespace ariel

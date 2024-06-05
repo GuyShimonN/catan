@@ -2,14 +2,17 @@
 #include <algorithm>
 #include <iostream>
 namespace ariel {
-    Player::Player(std::string) : name(name), victoryPoints(0) {
+    Player::Player(std::string playerName) : name(playerName), victoryPoints(0) {
+        // Resize the vector to accommodate all resource types
+        resources.resize(static_cast<size_t>(60), 0);  // Assuming TOTAL_RESOURCES is a valid enum value or constant that reflects the total number of resources.
+
+        // Initialize resource counts to zero
         resources[Resource::WOOD] = 0;
         resources[Resource::BRICK] = 0;
         resources[Resource::WOOL] = 0;
         resources[Resource::GRAIN] = 0;
         resources[Resource::ORE] = 0;
     }
-
     std::string Player::get_name() const {
         return name;
     }

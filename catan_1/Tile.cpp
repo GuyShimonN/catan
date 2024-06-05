@@ -33,7 +33,7 @@ namespace ariel {
         this->number = number;
     }
 
-    void Tile::addvertex(vertex v) {
+    void Tile::addvertex(vertex *v) {
         this->vertices.push_back(v);
     }
 
@@ -63,7 +63,7 @@ namespace ariel {
         return s;
     }
 
-    void Tile::add_edge(edge edge) {
+    void Tile::add_edge(edge *edge) {
         this->edges.push_back(edge);
     }
 }

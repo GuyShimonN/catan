@@ -35,7 +35,7 @@
 
 #include <vector>
 #include "vertex.h"
-
+#include <string>
 namespace ariel {
     class edge {
     public:
@@ -46,11 +46,14 @@ namespace ariel {
         int get_sub_id() const { return sub_id; }
         void add_neighbor(edge e);
         std::vector<edge> get_neighbors() const { return neighbors; }
+        void set_player_id(std::string id);
+        std::string get_player_id() const { return player_id; }
 
     private:
         int id;
         int sub_id;
         std::vector<edge>neighbors;
+        std::string player_id;
     };
 
 } // namespace ariel

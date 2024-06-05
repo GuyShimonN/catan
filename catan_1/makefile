@@ -1,13 +1,25 @@
-CC = g++
-CFLAGS = -Wall -std=c++11
+# Compiler
+CXX = g++
 
-OBJS = main.o Board.o Player.o vertex.o Tile.o edge.o Building.o Road.o DevelopmentCard.o
+# Compiler flags
+CXXFLAGS = -g -Wall -std=c++11
 
-catan: $(OBJS)
-	$(CC) $(CFLAGS) -o catan $(OBJS)
+# Source files
+SRCS = main.cpp edge.cpp Game.cpp Board.cpp Player.cpp vertex.cpp Tile.cpp Building.cpp Road.cpp DevelopmentCard.cpp
 
-%.o: %.cpp
-	$(CC) $(CFLAGS) -c $< -o $@
+# Object files
+OBJS = $(SRCS:.cpp=.o)
+
+# Executable name
+EXEC = catan
+
+all: $(EXEC)
+
+$(EXEC): $(OBJS)
+	$(CXX) $(CXXFLAGS) -o $(EXEC) $(OBJS)
+
+.cpp.o:
+	$(CXX) $(CXXFLAGS) -c $<  -o $@
 
 clean:
-	rm -f *.o catan
+	rm -f *.o $(EXEC)
