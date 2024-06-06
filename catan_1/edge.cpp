@@ -16,7 +16,7 @@ namespace ariel {
                sub_id == rhs.sub_id;
     }
 
-    void edge::add_neighbor(edge e) {
+    void edge::add_neighbor(edge* e) {
         this->neighbors.push_back(e);
     }
 

@@ -61,7 +61,7 @@ namespace ariel {
         Type type;
         int number;
 
-        std::vector<std::pair<Player,city>> players;
+        std::vector<std::pair<Player*,city>> players;
         std::vector<vertex*> vertices;
         std::vector<edge*> edges;
     };
