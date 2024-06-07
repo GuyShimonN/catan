@@ -15,6 +15,7 @@ namespace ariel {
         int diceRoll();
         void printWinner();
         bool chack_valid_city(int ver_id);
+        void load_image();
 
     private:
         Board& board;

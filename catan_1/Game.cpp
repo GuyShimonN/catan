@@ -14,13 +14,13 @@ namespace ariel {
     Game::Game( Board& board,Player& player1, Player& player2, Player& player3) :board(board),player1(player1),
                                                                               player2(player2), player3(player3) {
 
-
+        load_image();
         buildSettlement_for_the_first(player1,8);
         buildSettlement_for_the_first(player2,12);
-        buildSettlement_for_the_first(player3,14);
-        buildSettlement_for_the_first(player3,15);
-        buildSettlement_for_the_first(player2,16);
-        buildSettlement_for_the_first(player1,17);
+        buildSettlement_for_the_first(player3,4);
+        buildSettlement_for_the_first(player3,18);
+        buildSettlement_for_the_first(player2,30);
+        buildSettlement_for_the_first(player1,40);
     }
 
     void Game::buildSettlement_for_the_first(Player &player, int vertex_id) {
@@ -65,5 +65,28 @@ namespace ariel {
         return true;
 
     }
+    void Game::load_image(){
+        cv::Mat image = cv::imread("image.jpeg");
+        cv::imshow("image", image);
+        cv::waitKey(0);
+    }
+    void Game::play() {
+        while (!GameOver()) {
+            int dice = diceRoll();
+            cout << "Dice roll: " << dice << endl;
+            for (int i = 0; i < 19; i++) {
+                if (board.getTiles()[i].getNumber() == dice) {
+                    cout << "Tile " << i << " produced resources" << endl;
+                    for (vertex *v : board.getTiles()[i].getVertices()) {
+                        if (v->get_city() != Tile::city::NONE) {
+                            cout << "Player " << v->get_player_id() << " gets a resource" << endl;
+                        }
+                    }
+                }
+            }
+        }
+        printWinner();
+    }
+
 
 }

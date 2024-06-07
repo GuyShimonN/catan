@@ -2,7 +2,9 @@
 CXX = g++
 
 # Compiler flags
-CXXFLAGS = -g -Wall -std=c++11
+CXXFLAGS = -g -Wall -std=c++11 `pkg-config --cflags opencv4` -I/catan_1/image.jpeg
+# Linker flags
+LDFLAGS = `pkg-config --libs opencv4`
 
 # Source files
 SRCS = main.cpp edge.cpp Game.cpp Board.cpp Player.cpp vertex.cpp Tile.cpp Building.cpp Road.cpp DevelopmentCard.cpp
@@ -19,7 +21,7 @@ VALGRIND_OPTS = --leak-check=full --show-leak-kinds=all
 all: $(EXEC)
 
 $(EXEC): $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $(EXEC) $(OBJS)
+	$(CXX) $(CXXFLAGS) -o $(EXEC) $(OBJS) $(LDFLAGS)
 
 .cpp.o:
 	$(CXX) $(CXXFLAGS) -c $<  -o $@
