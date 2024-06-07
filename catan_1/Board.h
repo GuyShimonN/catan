@@ -43,15 +43,16 @@ namespace ariel {
     public:
         Board();
         void generateBoard();
-        const std::vector<Tile*>& getTiles() const;
+         std::vector<Tile>& getTiles() ;
         void printBoard() const;  // New method to print the board
-        const std::vector<vertex*>& getVertices() const{return vertices;};
-        const std::vector<edge*>& getEdges() const;
+         std::vector<vertex>& getVertices() {return vertices;};
+         std::vector<edge>& getEdges(){return edges;}; ;
+
 
     private:
-        std::vector<Tile*> tiles;
-        std::vector<vertex*> vertices;
-        std::vector<edge*> edges;
+        std::vector<Tile> tiles;
+        std::vector<vertex> vertices;
+        std::vector<edge> edges;
         void initializeTiles();
         void assignNumbers();
         void initializeVertices();

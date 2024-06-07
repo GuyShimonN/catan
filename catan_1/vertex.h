@@ -11,18 +11,20 @@ namespace ariel {
     public:
         vertex(int id, int sub_id);  // Constructor
         bool operator==(const vertex &rhs) const;
-        std::vector<Tile*> get_tiles() { return tiles; }
-        void set_tiles(const std::vector<Tile*>& tiles) { this->tiles = tiles; }
+        std::vector<Tile*>&get_tiles() { return tiles; }
+        void add_tiles(Tile* tile) { this->tiles.push_back(tile); }
         int get_id() { return id; }
         int get_sub_id() { return sub_id; }
         int get_city() { return city; }
         void add_vertex(vertex *v);
         void add_edge(edge *e);
-        std::vector<vertex*>get_verrices(){return vertices;}
+        std::vector<vertex*>&get_verrices(){return vertices;}
         void set_city(int cu );  // Change city type to int
         std::string get_player_id(){return player_id;}
         std::string set_player_id(std::string id);
-        std::vector<edge*> get_edges() { return edges; }
+        std::vector<edge*>&get_edges() { return edges; }
+        void print_edges();
+
     private:
         int id;
         int sub_id;

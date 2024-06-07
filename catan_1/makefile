@@ -13,6 +13,9 @@ OBJS = $(SRCS:.cpp=.o)
 # Executable name
 EXEC = catan
 
+# Valgrind options
+VALGRIND_OPTS = --leak-check=full --show-leak-kinds=all
+
 all: $(EXEC)
 
 $(EXEC): $(OBJS)
@@ -20,6 +23,9 @@ $(EXEC): $(OBJS)
 
 .cpp.o:
 	$(CXX) $(CXXFLAGS) -c $<  -o $@
+
+valgrind: $(EXEC)
+	valgrind $(VALGRIND_OPTS) ./$(EXEC)
 
 clean:
 	rm -f *.o $(EXEC)

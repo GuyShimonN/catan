@@ -23,4 +23,5 @@ namespace ariel {
     void edge::set_player_id(std::string id) {
         this->player_id = id;
     }
+
 }// namespace ariel

@@ -2,7 +2,7 @@
 
 namespace ariel {
     Tile::Tile(Type type, int id)
-            : type(type), id(id) {}
+            :  id(id) ,type(type){}
 
     Tile::Type Tile::getType() const {
         return type;
@@ -66,4 +66,6 @@ namespace ariel {
     void Tile::add_edge(edge *edge) {
         this->edges.push_back(edge);
     }
+
+
 }

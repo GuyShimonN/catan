@@ -1,18 +1,21 @@
 #include "vertex.h"
-
+#include <iostream>
 namespace ariel {
 
     vertex::vertex(int id, int sub_id) : id(id), sub_id(sub_id), city(2) {
         // Initialize tiles as an empty vector
     }
 
-    void vertex::add_vertex(ariel::vertex *v) {
+    void vertex::add_vertex(vertex *v) {
         this->vertices.push_back(v);
+//        std::cout<< "Vertex with ID " << v->get_id() << " added to vertex with ID " << this->id << std::endl;
     }
 
-    void vertex::add_edge(ariel::edge *e) {
-        this->edges.push_back(e);
+    void vertex::add_edge(edge *e) {
+        edges.push_back(e);
+//        std::cout << "Edge with ID " << e->get_id() << " added to vertex with ID " << this->id << std::endl;
     }
+
     void vertex::set_city(int cu){
         this->city=cu;
     }
@@ -20,5 +23,13 @@ namespace ariel {
         this->player_id=id;
         return id;
     }
+    void vertex::print_edges(){
+        int size = edges.size();
+//        std::cout << "Edges size: " << size <<std:: endl;
+        for (int i = 0; i < size; i++) {
+            std::cout << edges[i]->get_id() << std::endl;
+        }
+    }
+
 
 } // namespace ariel
