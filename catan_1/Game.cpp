@@ -14,6 +14,10 @@ namespace ariel {
     Game::Game( Board& board,Player& player1, Player& player2, Player& player3) :board(board),player1(player1),
                                                                               player2(player2), player3(player3) {
 
+        players.push_back(&player1);
+        players.push_back(&player2);
+        players.push_back(&player3);
+
         load_image();
         buildSettlement_for_the_first(player1,8);
         buildSettlement_for_the_first(player2,12);
@@ -21,6 +25,7 @@ namespace ariel {
         buildSettlement_for_the_first(player3,18);
         buildSettlement_for_the_first(player2,30);
         buildSettlement_for_the_first(player1,40);
+        play();
     }
 
     void Game::buildSettlement_for_the_first(Player &player, int vertex_id) {
@@ -60,7 +65,7 @@ namespace ariel {
     bool Game::chack_valid_city(int ver_id){
         vertex v =this->board.getVertices()[ver_id];
         for (vertex *p : v.get_verrices()){
-            if (p->get_city()!=Tile::city::NONE)return false;
+            if (p->get_city()!=vertex::city::NONE)return false;
         }
         return true;
 
@@ -78,14 +83,84 @@ namespace ariel {
                 if (board.getTiles()[i].getNumber() == dice) {
                     cout << "Tile " << i << " produced resources" << endl;
                     for (vertex *v : board.getTiles()[i].getVertices()) {
-                        if (v->get_city() != Tile::city::NONE) {
+                        if (v->get_city() != vertex::city::NONE) {
                             cout << "Player " << v->get_player_id() << " gets a resource" << endl;
+                            add_resource(v->get_player_id(), board.getTiles()[i].getResource(),v->get_city_type());
                         }
                     }
                 }
             }
         }
         printWinner();
+    }
+void Game::add_resource(std::string player_id, Resource::Type resource,::ariel::city city){
+    if (city==vertex::city::SETTLEMENT){
+        if (resource==Resource::WOOD){
+            Game::get_player(player_id)->addResource(Resource::WOOD,1);
+        }
+        if (resource==Resource::BRICK){
+            Game::get_player(player_id)->addResource(Resource::BRICK,1);
+        }
+        if (resource==Resource::WOOL){
+            Game::get_player(player_id)->addResource(Resource::WOOL,1);
+        }
+        if (resource==Resource::GRAIN){
+            Game::get_player(player_id)->addResource(Resource::GRAIN,1);
+        }
+        if (resource==Resource::ORE){
+            Game::get_player(player_id)->addResource(Resource::ORE,1);
+        }
+    }
+    if (city==vertex::city::CITY){
+        if (resource==Resource::WOOD){
+            Game::get_player(player_id)->addResource(Resource::WOOD,2);
+        }
+        if (resource==Resource::BRICK){
+            Game::get_player(player_id)->addResource(Resource::BRICK,2);
+        }
+        if (resource==Resource::WOOL){
+            Game::get_player(player_id)->addResource(Resource::WOOL,2);
+        }
+        if (resource==Resource::GRAIN){
+            Game::get_player(player_id)->addResource(Resource::GRAIN,2);
+        }
+        if (resource==Resource::ORE){
+            Game::get_player(player_id)->addResource(Resource::ORE,2);
+        }
+    }
+}
+    bool Game::GameOver() {
+        for (auto &player : Game::getPlayers()) {
+            if (player->getVictoryPoints() >= 10) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    void Game::printWinner() {
+        int max = 0;
+        string winner;
+        for (auto &player : Game::getPlayers()) {
+            if (player->getVictoryPoints() > max) {
+                max = player->getVictoryPoints();
+                winner = player->get_name();
+            }
+        }
+        cout << "The winner is: " << winner << endl;
+    }
+    Player* Game::get_player(std::string id) {
+        for (Player* player : players) {
+            if (player->get_name() == id) {
+                return player;
+            }
+        }
+        return nullptr;
+    }
+
+    std::vector<Player*>& Game::getPlayers() {
+
+        return players;
     }
 
 

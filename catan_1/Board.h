@@ -46,7 +46,8 @@ namespace ariel {
          std::vector<Tile>& getTiles() ;
         void printBoard() const;  // New method to print the board
          std::vector<vertex>& getVertices() {return vertices;};
-         std::vector<edge>& getEdges(){return edges;}; ;
+         std::vector<edge>& getEdges(){return edges;};
+
 
 
     private:

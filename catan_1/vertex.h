@@ -9,6 +9,7 @@ namespace ariel {
     class edge; // Forward declaration of edge class
     class vertex {
     public:
+        enum city { SETTLEMENT, CITY, NONE };
         vertex(int id, int sub_id);  // Constructor
         bool operator==(const vertex &rhs) const;
         std::vector<Tile*>&get_tiles() { return tiles; }
@@ -24,6 +25,7 @@ namespace ariel {
         std::string set_player_id(std::string id);
         std::vector<edge*>&get_edges() { return edges; }
         void print_edges();
+        city get_city_type() { return city_type; }
 
     private:
         int id;
@@ -33,6 +35,7 @@ namespace ariel {
         std::vector<edge*> edges;
         int city;  // Change city type to int
         std::string player_id;
+        enum city city_type;
     };
 }
 

@@ -18,6 +18,7 @@ namespace ariel {
 
     void vertex::set_city(int cu){
         this->city=cu;
+        this->city_type = static_cast<enum city>(cu);
     }
     std::string vertex::set_player_id(std::string id){
         this->player_id=id;

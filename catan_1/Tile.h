@@ -41,6 +41,8 @@
 #include <vector>
 
 namespace ariel {
+//    enum city { SETTLEMENT, CITY, NONE };
+
     class vertex; // Forward declaration
     class edge; // Forward declaration
     class Tile {
@@ -56,6 +58,7 @@ namespace ariel {
         void addvertex(vertex* v);
         void add_edge(edge* edge);
         std::string toString() const;
+        std::vector<vertex*>&getVertices() const;
 
     private:
         Type type;
