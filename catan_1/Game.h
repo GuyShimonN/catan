@@ -15,7 +15,7 @@ namespace ariel {
         Game( Board& board,Player& player1, Player& player2,Player& player3);
         void play();
         bool GameOver();
-        int diceRoll();
+        void diceRoll();
         void printWinner();
         bool chack_valid_city(int ver_id);
         void load_image();
@@ -29,8 +29,10 @@ namespace ariel {
         Player& player3;
         void buildSettlement_for_the_first(Player &player,int vertex_id);
         std::vector<Player*> players;
-        void add_resource(std::string player_id, Resource::Type resource, vertex::city city_type);
-
+        void add_resource(std::string player_id, Resource::Type resource, enum vertex::city city_type);
+        void play_turn(Player& player);
+        void bild_road(Player& player);
+        int round ;
 
     };
 

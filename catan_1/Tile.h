@@ -58,7 +58,7 @@ namespace ariel {
         void addvertex(vertex* v);
         void add_edge(edge* edge);
         std::string toString() const;
-        std::vector<vertex*>&getVertices() const;
+        std::vector<vertex*>&getVertices() ;
 
     private:
         Type type;

@@ -66,6 +66,7 @@ namespace ariel {
     void Tile::add_edge(edge *edge) {
         this->edges.push_back(edge);
     }
-
-
+    std::vector<vertex*>& Tile::getVertices()  {
+        return const_cast<std::vector<vertex*>&>(vertices); // Define this method to return the vertices
+    }
 }

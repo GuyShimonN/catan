@@ -1,6 +1,6 @@
 #ifndef PLAYER_H
 #define PLAYER_H
-
+#include <unordered_set>
 #include <vector>
 #include "Resource.hpp"
 #include "DevelopmentCard.h"
@@ -8,6 +8,8 @@
 #include "Road.h"
 #include <string>
 namespace ariel {
+    class edge; // Forward declaration
+    class vertex; // Forward declaration
     class Player {
     public:
         Player(std::string name);
@@ -25,13 +27,17 @@ namespace ariel {
         void buildSettlement();
 
         void buildCity();
-
-        void buildRoad();
+        bool valid_resource(Resource::Type type,int quantity);
+        bool buildRoad();
 
         void buyDevelopmentCard();
 
         void trade(Player &other, Resource::Type give, int giveQty, Resource::Type receive, int receiveQty);
-
+        std::vector<ariel::edge*>& get_edges();
+        void add_edge(ariel::edge* edge);
+        std::vector<ariel::vertex*>& get_vertexes();
+        void add_vertex(ariel::vertex *vertex);
+        int longestRoad();
     private:
         std::string name;
         int victoryPoints;
@@ -39,6 +45,9 @@ namespace ariel {
         std::vector<DevelopmentCard> developmentCards;
         std::vector<Building> buildings;
         std::vector<Road> roads;
+        std::vector<ariel::edge*> edges;
+        std::vector<ariel::vertex*> vertexes;
+        int DFS(edge* current, std::unordered_set<edge*>& visited);
     };
 }
 #endif // PLAYER_H

@@ -1,7 +1,9 @@
 #include "Player.hpp"
 #include <algorithm>
 #include <iostream>
+#include "edge.h"
 namespace ariel {
+
     Player::Player(std::string playerName) : name(playerName), victoryPoints(0) {
         // Resize the vector to accommodate all resource types
         resources.resize(static_cast<size_t>(60), 0);  // Assuming TOTAL_RESOURCES is a valid enum value or constant that reflects the total number of resources.
@@ -28,7 +30,12 @@ namespace ariel {
     void Player::addResource(Resource::Type type, int quantity) {
         resources[type] += quantity;
     }
-
+    bool Player::valid_resource(Resource::Type type,int quantity){
+        if (resources[type] < quantity) {
+            return false;
+        }
+        return true;
+    }
     bool Player::removeResource(Resource::Type type, int quantity) {
         if (resources[type] < quantity) {
             return false;
@@ -64,15 +71,18 @@ namespace ariel {
         }
     }
 
-    void Player::buildRoad() {
-        if (removeResource(Resource::BRICK, 1) && removeResource(Resource::WOOD, 1)) {
-            roads.push_back(Road());
-            std::cout << "Road built." << std::endl;
-        } else {
-            std::cout << "Not enough resources to build a road." << std::endl;
-        }
+    bool Player::buildRoad() {
+        if(valid_resource(Resource::BRICK,1) && valid_resource(Resource::WOOD,1)){
+            removeResource(Resource::BRICK, 1);
+            removeResource(Resource::WOOD, 1) ;
+//                roads.push_back(Road());
+                std::cout << "Road built." << std::endl;
+                return true;
+            } else {
+                std::cout << "Not enough resources to build a road." << std::endl;
+                return false;
+            }
     }
-
     void Player::buyDevelopmentCard() {
         if (removeResource(Resource::ORE, 1) && removeResource(Resource::WOOL, 1) &&
             removeResource(Resource::GRAIN, 1)) {
@@ -97,4 +107,36 @@ namespace ariel {
             other.addResource(receive, receiveQty);
         }
     }
+    int Player::longestRoad() {
+        int longest = 0;
+        for (edge* e : edges) {
+            std::unordered_set<edge*> visited;
+            longest = std::max(longest, DFS(e, visited));
+        }
+        return longest;
+    }
+    int Player::DFS(edge* current, std::unordered_set<edge*>& visited) {
+        visited.insert(current);
+        int longest = 0;
+        for (edge* neighbor : current->get_neighbors()){
+            if (neighbor->get_player_id() == this->get_name() && visited.find(neighbor) == visited.end()) {
+                longest = std::max(longest, DFS(neighbor, visited));
+            }
+        }
+        visited.erase(current);
+        return 1 + longest;
+    }
+    std::vector<edge*>& Player::get_edges() {
+        return edges;
+    }
+    void Player::add_edge(edge* edge) {
+        edges.push_back(edge);
+    }
+    std::vector<vertex*>& Player::get_vertexes() {
+        return vertexes;
+    }
+    void Player::add_vertex(vertex* vertex) {
+        vertexes.push_back(vertex);
+    }
+
 }
