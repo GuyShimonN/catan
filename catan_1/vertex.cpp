@@ -1,3 +1,4 @@
+//guyguy845@gmail.com
 #include "vertex.h"
 #include <iostream>
 namespace ariel {

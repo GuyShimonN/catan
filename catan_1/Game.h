@@ -1,7 +1,7 @@
 //
 // Created by guy on 6/4/24.
 //
-
+//guyguy845@gmail.com
 #ifndef CPP_EX3_24_MAIN_GAME_H
 #define CPP_EX3_24_MAIN_GAME_H
 #include "Player.hpp"
@@ -35,6 +35,7 @@ namespace ariel {
         void bild_road(Player& player);
         int round ;
         void add_resource_for_the_first(Player &player, vertex &vertex);
+        void add_development_card(Player &player);
 
     };
 

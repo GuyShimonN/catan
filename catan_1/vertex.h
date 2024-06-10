@@ -1,6 +1,6 @@
 #ifndef CPP_EX3_24_MAIN_VERTEX_H
 #define CPP_EX3_24_MAIN_VERTEX_H
-
+//guyguy845@gmail.com
 #include <vector>
 #include "edge.h"
 #include <string>

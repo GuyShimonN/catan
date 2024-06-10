@@ -1,3 +1,4 @@
+//guyguy845@gmail.com
 #include "Tile.h"
 
 namespace ariel {
@@ -59,6 +60,8 @@ namespace ariel {
                 s = "DESERT";
                 break;
         }
+        if (s=="DESERT")
+            return s;
         s = s + " " + std::to_string(this->number);
         return s;
     }

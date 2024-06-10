@@ -1,3 +1,4 @@
+//guyguy845@gmail.com
 #ifndef RESOURCE_H
 #define RESOURCE_H
 

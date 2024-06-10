@@ -1,3 +1,4 @@
+//guyguy845@gmail.com
 #include "Building.h"
 
 Building::Building(Type type) : type(type) {}

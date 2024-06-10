@@ -1,3 +1,4 @@
+//guyguy845@gmail.com
 #ifndef PLAYER_H
 #define PLAYER_H
 #include <unordered_set>
@@ -35,7 +36,7 @@ namespace ariel {
         bool buildRoad();
         void print_cards();
 
-        void buyDevelopmentCard();
+        bool buyDevelopmentCard();
 
         void trade(Player &other, Resource::Type give, int giveQty, Resource::Type receive, int receiveQty);
         std::vector<ariel::edge*>& get_edges();
@@ -43,7 +44,8 @@ namespace ariel {
         std::vector<ariel::vertex*>& get_vertexes();
         void add_vertex(ariel::vertex *vertex);
         int longestRoad();
-        void printPossibleSettlements(Board& b);
+        void addDevelopmentCard(DevelopmentCard card);
+        bool printPossibleSettlements(Board& b);
     private:
         std::string name;
         int victoryPoints;

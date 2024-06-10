@@ -1,6 +1,8 @@
 //
 // Created by guy on 6/4/24.
+//guyguy845@gmail.com
 //
+
 #include <unordered_set>
 #include <opencv2/opencv.hpp>
 #include <iostream>
@@ -20,7 +22,7 @@ namespace ariel {
 //        load_image();
         buildSettlement_for_the_first(player1, 8);
         buildSettlement_for_the_first(player2, 12);
-        buildSettlement_for_the_first(player3, 4);
+        buildSettlement_for_the_first(player3, 44);
 
         buildSettlement_for_the_first(player3, 18);
         add_resource_for_the_first(player3, board.getVertices()[18]);
@@ -35,6 +37,7 @@ namespace ariel {
     void Game::add_resource_for_the_first(Player &player, vertex &vertex) {
         for (Tile *tile: vertex.get_tiles()) {
             player.addResource(tile->getResource(), 1);
+            cout<< "player " << player.get_name() << " get 1 " << tile->getResource() << endl;
         }
     }
 
@@ -240,7 +243,7 @@ namespace ariel {
                 player.buildCity();
             }
             if (option == 4) {
-                player.buyDevelopmentCard();
+                if(player.buyDevelopmentCard())add_development_card(player);
             }
             if (option == 5) {
                 cout << "player " << player.get_name() << " which player do you want to trade with?" << endl;
@@ -320,7 +323,11 @@ namespace ariel {
 
     void Game::buildSettlement(Player &player) {
         cout << "player " << player.get_name() << " which vertex do you want to put? the option are:" << endl;
-        player.printPossibleSettlements(board);
+        bool bol =player.printPossibleSettlements(board);
+        if (!bol){
+            cout << "player " << player.get_name() << " does not have enough resources to build a settlement" << endl;
+            return;
+        }
         cout << "enter the vertex id" << endl;
         while (true) {
             int vertex_id;
@@ -343,4 +350,12 @@ namespace ariel {
 
         }
     }
+
+    void Game::add_development_card(Player &player) {
+        DevelopmentCard card;
+        player.addDevelopmentCard(card);
+//        player.addResource(type, 1);
+        cout << "player " << player.get_name() << " get 1 " << card.getType() << endl;
+    }
+
 }

@@ -1,3 +1,4 @@
+//guyguy845@gmail.com
 #include <iostream>
 #include "catan.hpp"
 #include "Tile.h"
@@ -10,9 +11,9 @@ using namespace ariel;
 int main() {
     Board board;
     board.printBoard();  // Print the board
-Player player("Alice");
-Player player2("Bob");
-Player player3("Charlie");
+Player player("guy");
+Player player2("daniel");
+Player player3("shachar");
 Game game( board,player, player2, player3);
 
 

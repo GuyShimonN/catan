@@ -1,3 +1,4 @@
+//guyguy845@gmail.com
 #include "Player.hpp"
 #include <algorithm>
 #include <iostream>
@@ -85,29 +86,53 @@ namespace ariel {
                 return false;
             }
     }
-    void Player::buyDevelopmentCard() {
-        if (removeResource(Resource::ORE, 1) && removeResource(Resource::WOOL, 1) &&
-            removeResource(Resource::GRAIN, 1)) {
-            // Simplified to always give a Victory Point card for now
-            developmentCards.push_back(DevelopmentCard(DevelopmentCard::VICTORY_POINT));
-            addVictoryPoints(1);
+    bool Player::buyDevelopmentCard() {
+        if (valid_resource(Resource::ORE, 1) && valid_resource(Resource::WOOL, 1) &&
+            valid_resource(Resource::GRAIN, 1)) {
+            addResource(Resource::ORE, -1);
+            addResource(Resource::WOOL, -1);
+            addResource(Resource::GRAIN, -1);
+
+//            developmentCards.push_back(DevelopmentCard(DevelopmentCard::VICTORY_POINT));
+//            addVictoryPoints(1);
             std::cout << "Development card bought. Total victory points: " << victoryPoints << std::endl;
-        } else {
+            return true;
+        }
+//        if (removeResource(Resource::ORE, 1) && removeResource(Resource::WOOL, 1) &&
+//            removeResource(Resource::GRAIN, 1)) {
+//            // Simplified to always give a Victory Point card for now
+//            developmentCards.push_back(DevelopmentCard(DevelopmentCard::VICTORY_POINT));
+//            addVictoryPoints(1);
+//            std::cout << "Development card bought. Total victory points: " << victoryPoints << std::endl;
+//        }
+        else {
             std::cout << "Not enough resources to buy a development card." << std::endl;
+            return false;
         }
     }
 
     void Player::trade(Player &other, Resource::Type give, int giveQty, Resource::Type receive, int receiveQty) {
-        if (removeResource(give, giveQty) && other.removeResource(receive, receiveQty)) {
-            addResource(receive, receiveQty);
-            other.addResource(give, giveQty);
-            std::cout << "Trade completed." << std::endl;
-        } else {
+        if(!(valid_resource(give,giveQty) && other.valid_resource(receive,receiveQty))){
             std::cout << "Trade failed due to insufficient resources." << std::endl;
-            // Reverse the resource removal if trade fails
-            addResource(give, giveQty);
-            other.addResource(receive, receiveQty);
+            return;
         }
+        removeResource(give, giveQty);
+        other.addResource(give, giveQty);
+        other.removeResource(receive, receiveQty);
+        addResource(receive, receiveQty);
+        std::cout << "Trade completed." << std::endl;
+        print_cards();
+        other.print_cards();
+//        if (removeResource(give, giveQty) && other.removeResource(receive, receiveQty)) {
+//            addResource(receive, receiveQty);
+//            other.addResource(give, giveQty);
+//            std::cout << "Trade completed." << std::endl;
+//        } else {
+//            std::cout << "Trade failed due to insufficient resources." << std::endl;
+//            // Reverse the resource removal if trade fails
+//            addResource(give, giveQty);
+//            other.addResource(receive, receiveQty);
+//        }
     }
     int Player::longestRoad() {
         int longest = 0;
@@ -148,11 +173,20 @@ namespace ariel {
         std::cout << "Grain: " << resources[Resource::GRAIN] << std::endl;
         std::cout << "Ore: " << resources[Resource::ORE] << std::endl;
     }
-    void Player::printPossibleSettlements(Board& board) {
+    bool Player::printPossibleSettlements(Board& board) {
+        int sum = 0;
         std::cout << "Player " << name << " can build a settlement at the following vertices:" << std::endl;
         for (vertex v : board.getVertices()) {
-            if (v.get_city_type() == vertex::NONE && isConnectedToRoad(v) && noAdjacentBuildings(v)) {            }
+            if (v.get_city_type() == vertex::NONE && isConnectedToRoad(v) && noAdjacentBuildings(v)) {
+                std::cout << "Vertex " << sum << ": " << v.get_id() << std::endl;
+                sum++;
+            }
         }
+        if (sum == 0) {
+            std::cout << "No possible settlements." << std::endl;
+            return false;
+        }
+        return true;
     }
 
     bool Player::isConnectedToRoad(vertex& v) {
@@ -171,5 +205,9 @@ namespace ariel {
         }
         return true;
     }
+    void Player::addDevelopmentCard(DevelopmentCard card){
+        developmentCards.push_back(card);
+    }
+
 
 }
