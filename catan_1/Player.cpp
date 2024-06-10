@@ -45,14 +45,15 @@ namespace ariel {
     }
 
     void Player::buildSettlement() {
-        if (removeResource(Resource::BRICK, 1) && removeResource(Resource::WOOD, 1) &&
-            removeResource(Resource::WOOL, 1) && removeResource(Resource::GRAIN, 1)) {
+      if(!(valid_resource(Resource::BRICK,1) && valid_resource(Resource::WOOD,1) && valid_resource(Resource::WOOL,1) && valid_resource(Resource::GRAIN,1))){
+          std::cout << "Not enough resources to build a settlement." << std::endl;
+          return;
+      }
+
             buildings.push_back(Building(Building::SETTLEMENT));
             addVictoryPoints(1);
             std::cout << "Settlement built. Total victory points: " << victoryPoints << std::endl;
-        } else {
-            std::cout << "Not enough resources to build a settlement." << std::endl;
-        }
+
     }
 
     void Player::buildCity() {
@@ -137,6 +138,37 @@ namespace ariel {
     }
     void Player::add_vertex(vertex* vertex) {
         vertexes.push_back(vertex);
+    }
+    void Player::print_cards() {
+        std::cout << "Player " << name << " has the following resources:" << std::endl;
+        std::cout << "Wood: " << resources[Resource::WOOD] << std::endl;
+        std::cout << "Brick: " << resources[Resource::BRICK] << std::endl;
+        std::cout << "Wool: " << resources[Resource::WOOL] << std::endl;
+        std::cout << "Grain: " << resources[Resource::GRAIN] << std::endl;
+        std::cout << "Ore: " << resources[Resource::ORE] << std::endl;
+    }
+    void Player::printPossibleSettlements(Board& board) {
+        std::cout << "Player " << name << " can build a settlement at the following vertices:" << std::endl;
+        for (vertex v : board.getVertices()) {
+            if (v.get_city_type() == vertex::NONE && isConnectedToRoad(v) && noAdjacentBuildings(v)) {            }
+        }
+    }
+
+    bool Player::isConnectedToRoad(vertex& v) {
+        for (edge* e : v.get_edges()) {
+            if (e->get_player_id() == this->get_name()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    bool Player::noAdjacentBuildings(vertex& v) {
+        for (vertex* neighbor : v.get_verrices()) {
+            if (neighbor->get_city_type() != vertex::city::NONE) {                return false;
+            }
+        }
+        return true;
     }
 
 }

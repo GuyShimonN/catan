@@ -9,6 +9,7 @@
 #include "Resource.hpp"
 #include "vertex.h"
 #include <vector>
+#include <opencv2/opencv.hpp>
 namespace ariel {
     class Game {
     public:
@@ -21,7 +22,7 @@ namespace ariel {
         void load_image();
         Player* get_player(std::string id);
         std::vector<Player*>& getPlayers();
-
+        void buildSettlement(Player& player);
     private:
         Board& board;
         Player& player1;

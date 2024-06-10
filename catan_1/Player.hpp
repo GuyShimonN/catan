@@ -7,6 +7,9 @@
 #include "Building.h"
 #include "Road.h"
 #include <string>
+#include "Board.h"
+#include "vertex.h"
+
 namespace ariel {
     class edge; // Forward declaration
     class vertex; // Forward declaration
@@ -29,6 +32,7 @@ namespace ariel {
         void buildCity();
         bool valid_resource(Resource::Type type,int quantity);
         bool buildRoad();
+        void print_cards();
 
         void buyDevelopmentCard();
 
@@ -38,6 +42,7 @@ namespace ariel {
         std::vector<ariel::vertex*>& get_vertexes();
         void add_vertex(ariel::vertex *vertex);
         int longestRoad();
+        void printPossibleSettlements(ariel::Board& b);
     private:
         std::string name;
         int victoryPoints;
@@ -48,6 +53,8 @@ namespace ariel {
         std::vector<ariel::edge*> edges;
         std::vector<ariel::vertex*> vertexes;
         int DFS(edge* current, std::unordered_set<edge*>& visited);
+        bool isConnectedToRoad(vertex& v);
+        bool noAdjacentBuildings(vertex& v);
     };
 }
 #endif // PLAYER_H

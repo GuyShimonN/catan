@@ -44,7 +44,7 @@
             int get_id() const { return id; }
             int get_sub_id() const { return sub_id; }
             void add_neighbor(edge* e);
-            std::vector<edge*> get_neighbors()  { return neighbors; }
+            std::vector<edge*>& get_neighbors()  { return neighbors; }
             void set_player_id(std::string id);
             std::string get_player_id() const { return player_id; }
 

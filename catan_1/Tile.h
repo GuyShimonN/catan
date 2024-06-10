@@ -42,7 +42,7 @@
 
 namespace ariel {
 //    enum city { SETTLEMENT, CITY, NONE };
-
+    class Player; // Forward declaration
     class vertex; // Forward declaration
     class edge; // Forward declaration
     class Tile {
