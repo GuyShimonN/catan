@@ -21,10 +21,21 @@ namespace ariel {
         buildSettlement_for_the_first(player1, 8);
         buildSettlement_for_the_first(player2, 12);
         buildSettlement_for_the_first(player3, 4);
+
         buildSettlement_for_the_first(player3, 18);
+        add_resource_for_the_first(player3, board.getVertices()[18]);
+
         buildSettlement_for_the_first(player2, 30);
+        add_resource_for_the_first(player2, board.getVertices()[30]);
+
         buildSettlement_for_the_first(player1, 40);
+        add_resource_for_the_first(player1, board.getVertices()[40]);
         play();
+    }
+    void Game::add_resource_for_the_first(Player &player, vertex &vertex) {
+        for (Tile *tile: vertex.get_tiles()) {
+            player.addResource(tile->getResource(), 1);
+        }
     }
 
     void Game::buildSettlement_for_the_first(Player &player, int vertex_id) {

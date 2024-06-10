@@ -162,11 +162,17 @@ namespace ariel {
 
     void Board::initialize_tile_to_vertex() {
         tiles[0].addvertex(&vertices[0]);
+        vertices[0].add_tiles(&tiles[0]);
         tiles[0].addvertex(&vertices[1]);
+        vertices[1].add_tiles(&tiles[0]);
         tiles[0].addvertex(&vertices[2]);
+        vertices[2].add_tiles(&tiles[0]);
         tiles[0].addvertex(&vertices[9]);
+        vertices[9].add_tiles(&tiles[0]);
         tiles[0].addvertex(&vertices[8]);
+        vertices[8].add_tiles(&tiles[0]);
         tiles[0].addvertex(&vertices[7]);
+        vertices[7].add_tiles(&tiles[0]);
 
         tiles[0].add_edge(&edges[0]);
         tiles[0].add_edge(&edges[1]);
@@ -176,11 +182,17 @@ namespace ariel {
         tiles[0].add_edge(&edges[5]);
 
         tiles[1].addvertex(&vertices[2]);
+        vertices[2].add_tiles(&tiles[1]);
         tiles[1].addvertex(&vertices[3]);
+        vertices[3].add_tiles(&tiles[1]);
         tiles[1].addvertex(&vertices[4]);
+        vertices[4].add_tiles(&tiles[1]);
         tiles[1].addvertex(&vertices[11]);
+        vertices[11].add_tiles(&tiles[1]);
         tiles[1].addvertex(&vertices[10]);
+        vertices[10].add_tiles(&tiles[1]);
         tiles[1].addvertex(&vertices[9]);
+        vertices[9].add_tiles(&tiles[1]);
 
         tiles[1].add_edge(&edges[6]);
         tiles[1].add_edge(&edges[7]);
@@ -190,11 +202,17 @@ namespace ariel {
         tiles[1].add_edge(&edges[2]);
 
         tiles[2].addvertex(&vertices[4]);
+        vertices[4].add_tiles(&tiles[2]);
         tiles[2].addvertex(&vertices[5]);
+        vertices[5].add_tiles(&tiles[2]);
         tiles[2].addvertex(&vertices[6]);
+        vertices[6].add_tiles(&tiles[2]);
         tiles[2].addvertex(&vertices[13]);
+        vertices[13].add_tiles(&tiles[2]);
         tiles[2].addvertex(&vertices[12]);
+        vertices[12].add_tiles(&tiles[2]);
         tiles[2].addvertex(&vertices[11]);
+        vertices[11].add_tiles(&tiles[2]);
 
         tiles[2].add_edge(&edges[11]);
         tiles[2].add_edge(&edges[12]);
@@ -204,11 +222,17 @@ namespace ariel {
         tiles[2].add_edge(&edges[8]);
 
         tiles[3].addvertex(&vertices[7]);
+        vertices[7].add_tiles(&tiles[3]);
         tiles[3].addvertex(&vertices[8]);
+        vertices[8].add_tiles(&tiles[3]);
         tiles[3].addvertex(&vertices[15]);
+        vertices[15].add_tiles(&tiles[3]);
         tiles[3].addvertex(&vertices[17]);
+        vertices[17].add_tiles(&tiles[3]);
         tiles[3].addvertex(&vertices[18]);
+        vertices[18].add_tiles(&tiles[3]);
         tiles[3].addvertex(&vertices[19]);
+        vertices[19].add_tiles(&tiles[3]);
 
         tiles[3].add_edge(&edges[16]);
         tiles[3].add_edge(&edges[4]);
@@ -218,11 +242,17 @@ namespace ariel {
         tiles[3].add_edge(&edges[20]);
 
         tiles[4].addvertex(&vertices[8]);
+        vertices[8].add_tiles(&tiles[4]);
         tiles[4].addvertex(&vertices[9]);
+        vertices[9].add_tiles(&tiles[4]);
         tiles[4].addvertex(&vertices[10]);
+        vertices[10].add_tiles(&tiles[4]);
         tiles[4].addvertex(&vertices[19]);
+        vertices[19].add_tiles(&tiles[4]);
         tiles[4].addvertex(&vertices[20]);
+        vertices[20].add_tiles(&tiles[4]);
         tiles[4].addvertex(&vertices[21]);
+        vertices[21].add_tiles(&tiles[4]);
 
         tiles[4].add_edge(&edges[3]);
         tiles[4].add_edge(&edges[10]);
@@ -232,11 +262,17 @@ namespace ariel {
         tiles[4].add_edge(&edges[17]);
 
         tiles[5].addvertex(&vertices[10]);
+        vertices[10].add_tiles(&tiles[5]);
         tiles[5].addvertex(&vertices[11]);
+        vertices[11].add_tiles(&tiles[5]);
         tiles[5].addvertex(&vertices[12]);
+        vertices[12].add_tiles(&tiles[5]);
         tiles[5].addvertex(&vertices[21]);
+        vertices[21].add_tiles(&tiles[5]);
         tiles[5].addvertex(&vertices[22]);
+        vertices[22].add_tiles(&tiles[5]);
         tiles[5].addvertex(&vertices[23]);
+        vertices[23].add_tiles(&tiles[5]);
 
         tiles[5].add_edge(&edges[9]);
         tiles[5].add_edge(&edges[15]);
@@ -246,11 +282,17 @@ namespace ariel {
         tiles[5].add_edge(&edges[21]);
 
         tiles[6].addvertex(&vertices[12]);
+        vertices[12].add_tiles(&tiles[6]);
         tiles[6].addvertex(&vertices[13]);
+        vertices[13].add_tiles(&tiles[6]);
         tiles[6].addvertex(&vertices[14]);
+        vertices[14].add_tiles(&tiles[6]);
         tiles[6].addvertex(&vertices[23]);
+        vertices[23].add_tiles(&tiles[6]);
         tiles[6].addvertex(&vertices[24]);
+        vertices[24].add_tiles(&tiles[6]);
         tiles[6].addvertex(&vertices[25]);
+        vertices[25].add_tiles(&tiles[6]);
 
         tiles[6].add_edge(&edges[14]);
         tiles[6].add_edge(&edges[27]);
@@ -260,11 +302,17 @@ namespace ariel {
         tiles[6].add_edge(&edges[24]);
 
         tiles[7].addvertex(&vertices[16]);
+        vertices[16].add_tiles(&tiles[7]);
         tiles[7].addvertex(&vertices[17]);
+        vertices[17].add_tiles(&tiles[7]);
         tiles[7].addvertex(&vertices[18]);
+        vertices[18].add_tiles(&tiles[7]);
         tiles[7].addvertex(&vertices[35]);
+        vertices[35].add_tiles(&tiles[7]);
         tiles[7].addvertex(&vertices[36]);
+        vertices[36].add_tiles(&tiles[7]);
         tiles[7].addvertex(&vertices[37]);
+        vertices[37].add_tiles(&tiles[7]);
 
         tiles[7].add_edge(&edges[31]);
         tiles[7].add_edge(&edges[19]);
@@ -274,11 +322,17 @@ namespace ariel {
         tiles[7].add_edge(&edges[35]);
 
         tiles[8].addvertex(&vertices[18]);
+        vertices[18].add_tiles(&tiles[8]);
         tiles[8].addvertex(&vertices[19]);
+        vertices[19].add_tiles(&tiles[8]);
         tiles[8].addvertex(&vertices[20]);
+        vertices[20].add_tiles(&tiles[8]);
         tiles[8].addvertex(&vertices[33]);
+        vertices[33].add_tiles(&tiles[8]);
         tiles[8].addvertex(&vertices[34]);
+        vertices[34].add_tiles(&tiles[8]);
         tiles[8].addvertex(&vertices[35]);
+        vertices[35].add_tiles(&tiles[8]);
 
         tiles[8].add_edge(&edges[18]);
         tiles[8].add_edge(&edges[23]);
@@ -289,11 +343,17 @@ namespace ariel {
 
 
         tiles[9].addvertex(&vertices[20]);
+        vertices[20].add_tiles(&tiles[9]);
         tiles[9].addvertex(&vertices[21]);
+        vertices[21].add_tiles(&tiles[9]);
         tiles[9].addvertex(&vertices[22]);
+        vertices[22].add_tiles(&tiles[9]);
         tiles[9].addvertex(&vertices[31]);
+        vertices[31].add_tiles(&tiles[9]);
         tiles[9].addvertex(&vertices[32]);
+        vertices[32].add_tiles(&tiles[9]);
         tiles[9].addvertex(&vertices[33]);
+        vertices[33].add_tiles(&tiles[9]);
 
         tiles[9].add_edge(&edges[22]);
         tiles[9].add_edge(&edges[26]);
@@ -303,11 +363,17 @@ namespace ariel {
         tiles[9].add_edge(&edges[36]);
 
         tiles[10].addvertex(&vertices[22]);
+        vertices[22].add_tiles(&tiles[10]);
         tiles[10].addvertex(&vertices[23]);
+        vertices[23].add_tiles(&tiles[10]);
         tiles[10].addvertex(&vertices[24]);
+        vertices[24].add_tiles(&tiles[10]);
         tiles[10].addvertex(&vertices[29]);
+        vertices[29].add_tiles(&tiles[10]);
         tiles[10].addvertex(&vertices[30]);
+        vertices[30].add_tiles(&tiles[10]);
         tiles[10].addvertex(&vertices[31]);
+        vertices[31].add_tiles(&tiles[10]);
 
         tiles[10].add_edge(&edges[25]);
         tiles[10].add_edge(&edges[30]);
@@ -317,11 +383,17 @@ namespace ariel {
         tiles[10].add_edge(&edges[39]);
 
         tiles[11].addvertex(&vertices[24]);
+        vertices[24].add_tiles(&tiles[11]);
         tiles[11].addvertex(&vertices[25]);
+        vertices[25].add_tiles(&tiles[11]);
         tiles[11].addvertex(&vertices[26]);
+        vertices[26].add_tiles(&tiles[11]);
         tiles[11].addvertex(&vertices[27]);
+        vertices[27].add_tiles(&tiles[11]);
         tiles[11].addvertex(&vertices[28]);
+        vertices[28].add_tiles(&tiles[11]);
         tiles[11].addvertex(&vertices[29]);
+        vertices[29].add_tiles(&tiles[11]);
 
         tiles[11].add_edge(&edges[29]);
         tiles[11].add_edge(&edges[45]);
@@ -331,11 +403,17 @@ namespace ariel {
         tiles[11].add_edge(&edges[42]);
 
         tiles[12].addvertex(&vertices[36]);
+        vertices[36].add_tiles(&tiles[12]);
         tiles[12].addvertex(&vertices[35]);
+        vertices[35].add_tiles(&tiles[12]);
         tiles[12].addvertex(&vertices[34]);
+        vertices[34].add_tiles(&tiles[12]);
         tiles[12].addvertex(&vertices[38]);
+        vertices[38].add_tiles(&tiles[12]);
         tiles[12].addvertex(&vertices[39]);
+        vertices[39].add_tiles(&tiles[12]);
         tiles[12].addvertex(&vertices[40]);
+        vertices[40].add_tiles(&tiles[12]);
 
         tiles[12].add_edge(&edges[33]);
         tiles[12].add_edge(&edges[38]);
@@ -345,11 +423,17 @@ namespace ariel {
         tiles[12].add_edge(&edges[52]);
 
         tiles[13].addvertex(&vertices[34]);
+        vertices[34].add_tiles(&tiles[13]);
         tiles[13].addvertex(&vertices[33]);
+        vertices[33].add_tiles(&tiles[13]);
         tiles[13].addvertex(&vertices[32]);
+        vertices[32].add_tiles(&tiles[13]);
         tiles[13].addvertex(&vertices[41]);
+        vertices[41].add_tiles(&tiles[13]);
         tiles[13].addvertex(&vertices[42]);
+        vertices[42].add_tiles(&tiles[13]);
         tiles[13].addvertex(&vertices[40]);
+        vertices[40].add_tiles(&tiles[13]);
 
         tiles[13].add_edge(&edges[37]);
         tiles[13].add_edge(&edges[41]);
@@ -359,11 +443,17 @@ namespace ariel {
         tiles[13].add_edge(&edges[49]);
 
         tiles[14].addvertex(&vertices[32]);
+        vertices[32].add_tiles(&tiles[14]);
         tiles[14].addvertex(&vertices[31]);
+        vertices[31].add_tiles(&tiles[14]);
         tiles[14].addvertex(&vertices[30]);
+        vertices[30].add_tiles(&tiles[14]);
         tiles[14].addvertex(&vertices[43]);
+        vertices[43].add_tiles(&tiles[14]);
         tiles[14].addvertex(&vertices[44]);
+        vertices[44].add_tiles(&tiles[14]);
         tiles[14].addvertex(&vertices[42]);
+        vertices[42].add_tiles(&tiles[14]);
 
         tiles[14].add_edge(&edges[40]);
         tiles[14].add_edge(&edges[44]);
@@ -373,11 +463,17 @@ namespace ariel {
         tiles[14].add_edge(&edges[53]);
 
         tiles[15].addvertex(&vertices[30]);
+        vertices[30].add_tiles(&tiles[15]);
         tiles[15].addvertex(&vertices[29]);
+        vertices[29].add_tiles(&tiles[15]);
         tiles[15].addvertex(&vertices[28]);
+        vertices[28].add_tiles(&tiles[15]);
         tiles[15].addvertex(&vertices[45]);
+        vertices[45].add_tiles(&tiles[15]);
         tiles[15].addvertex(&vertices[46]);
+        vertices[46].add_tiles(&tiles[15]);
         tiles[15].addvertex(&vertices[44]);
+        vertices[44].add_tiles(&tiles[15]);
 
         tiles[15].add_edge(&edges[43]);
         tiles[15].add_edge(&edges[48]);
@@ -387,11 +483,17 @@ namespace ariel {
         tiles[15].add_edge(&edges[56]);
 
         tiles[16].addvertex(&vertices[39]);
+        vertices[39].add_tiles(&tiles[16]);
         tiles[16].addvertex(&vertices[40]);
+        vertices[40].add_tiles(&tiles[16]);
         tiles[16].addvertex(&vertices[41]);
+        vertices[41].add_tiles(&tiles[16]);
         tiles[16].addvertex(&vertices[51]);
+        vertices[51].add_tiles(&tiles[16]);
         tiles[16].addvertex(&vertices[52]);
+        vertices[52].add_tiles(&tiles[16]);
         tiles[16].addvertex(&vertices[53]);
+        vertices[53].add_tiles(&tiles[16]);
 
         tiles[16].add_edge(&edges[62]);
         tiles[16].add_edge(&edges[63]);
@@ -401,11 +503,17 @@ namespace ariel {
         tiles[16].add_edge(&edges[55]);
 
         tiles[17].addvertex(&vertices[41]);
+        vertices[41].add_tiles(&tiles[17]);
         tiles[17].addvertex(&vertices[42]);
+        vertices[42].add_tiles(&tiles[17]);
         tiles[17].addvertex(&vertices[43]);
+        vertices[43].add_tiles(&tiles[17]);
         tiles[17].addvertex(&vertices[49]);
+        vertices[49].add_tiles(&tiles[17]);
         tiles[17].addvertex(&vertices[50]);
+        vertices[50].add_tiles(&tiles[17]);
         tiles[17].addvertex(&vertices[51]);
+        vertices[51].add_tiles(&tiles[17]);
 
         tiles[17].add_edge(&edges[62]);
         tiles[17].add_edge(&edges[54]);
@@ -415,11 +523,17 @@ namespace ariel {
         tiles[17].add_edge(&edges[68]);
 
         tiles[18].addvertex(&vertices[43]);
+        vertices[43].add_tiles(&tiles[18]);
         tiles[18].addvertex(&vertices[44]);
+        vertices[44].add_tiles(&tiles[18]);
         tiles[18].addvertex(&vertices[45]);
+        vertices[45].add_tiles(&tiles[18]);
         tiles[18].addvertex(&vertices[47]);
+        vertices[47].add_tiles(&tiles[18]);
         tiles[18].addvertex(&vertices[48]);
+        vertices[48].add_tiles(&tiles[18]);
         tiles[18].addvertex(&vertices[49]);
+        vertices[49].add_tiles(&tiles[18]);
 
         tiles[18].add_edge(&edges[66]);
         tiles[18].add_edge(&edges[57]);

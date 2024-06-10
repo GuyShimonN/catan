@@ -34,6 +34,7 @@ namespace ariel {
         void play_turn(Player& player);
         void bild_road(Player& player);
         int round ;
+        void add_resource_for_the_first(Player &player, vertex &vertex);
 
     };
 
