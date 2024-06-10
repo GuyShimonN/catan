@@ -47,7 +47,12 @@ namespace ariel {
         cout << "enter the edge id" << endl;
         while (true) {
             int edge_id;
-            cin >> edge_id;
+            if (!(cin >> edge_id)) {
+                cin.clear();  // Clear the fail state
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');  // Ignore the rest of the line
+                cout << "Invalid input. Please enter a number." << endl;
+                continue;  // Skip the rest of the loop and start over
+            }
             auto it = find_if(v.get_edges().begin(), v.get_edges().end(),
                               [edge_id](edge *e) { return e->get_id() == edge_id; });
             if (it != v.get_edges().end()) {
@@ -55,7 +60,6 @@ namespace ariel {
                 e->set_player_id(player.get_name());
                 player.add_edge(e);
                 cout << "player " << player.get_name() << " build a road in edge " << edge_id << endl;
-
                 cout << "test chack that the player is the owner of the edge: " << e->get_player_id() << endl;
                 cout << board.getEdges()[edge_id].get_player_id() << endl;
                 break;

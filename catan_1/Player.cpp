@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <iostream>
 #include "edge.h"
+#include "Board.h"
 namespace ariel {
 
     Player::Player(std::string playerName) : name(playerName), victoryPoints(0) {

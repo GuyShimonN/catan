@@ -13,6 +13,7 @@
 namespace ariel {
     class edge; // Forward declaration
     class vertex; // Forward declaration
+    class Board; // Forward declaration
     class Player {
     public:
         Player(std::string name);
@@ -42,7 +43,7 @@ namespace ariel {
         std::vector<ariel::vertex*>& get_vertexes();
         void add_vertex(ariel::vertex *vertex);
         int longestRoad();
-        void printPossibleSettlements(ariel::Board& b);
+        void printPossibleSettlements(Board& b);
     private:
         std::string name;
         int victoryPoints;
