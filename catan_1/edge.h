@@ -9,6 +9,7 @@
     #include "vertex.h"
     #include <string>
     namespace ariel {
+    class vertex; // Forward declaration
         class edge {
         public:
             edge(int id, int sub_id);

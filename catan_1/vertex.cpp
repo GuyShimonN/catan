@@ -3,7 +3,7 @@
 #include <iostream>
 namespace ariel {
 
-    vertex::vertex(int id, int sub_id) : id(id), sub_id(sub_id), city(2) {
+    vertex::vertex(int id, int sub_id) : id(id), sub_id(sub_id), city(2) ,city_type(NONE){
         // Initialize tiles as an empty vector
     }
 

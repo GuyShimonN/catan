@@ -3,6 +3,7 @@
 //
 //guyguy845@gmail.com
 #include "edge.h"
+#include "vertex.h"
 namespace ariel {
 
     edge::edge(int id, int sub_id) {
@@ -23,5 +24,9 @@ namespace ariel {
     void edge::set_player_id(std::string id) {
         this->player_id = id;
     }
+    void edge::add_vertex(vertex* v){
+        this->vertexes.push_back(v);
+    }
+
 
 }// namespace ariel

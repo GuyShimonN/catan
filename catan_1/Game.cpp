@@ -231,7 +231,12 @@ namespace ariel {
             cout << "6. show the cards" << endl; //add this option
             cout << "7. end turn" << endl;
             int option;
-            cin >> option;
+            if (!(cin >> option)) {
+                cin.clear();  // Clear the fail state
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');  // Ignore the rest of the line
+                cout << "Invalid input. Please enter a number." << endl;
+                continue;  // Skip the rest of the loop and start over
+            }
             if (option == 1) {
                 bild_road(player);
             }
@@ -291,6 +296,7 @@ namespace ariel {
     }
 
     void Game::bild_road(Player &player) {
+        vector<int> possible_edges;
         if (!(player.valid_resource(Resource::BRICK, 1) && player.valid_resource(Resource::WOOD, 1))) {
             cout << "player " << player.get_name() << " does not have enough resources to build a road" << endl;
             return;  //check if the player have the resources
@@ -301,6 +307,7 @@ namespace ariel {
         for (int i = 0; i < sun; i++) {
             for (size_t j = 0; j < player.get_edges()[i]->get_neighbors().size(); j++) {
                 if (player.get_edges()[i]->get_neighbors()[j]->get_player_id() == "") {
+                    possible_edges.push_back(player.get_edges()[i]->get_neighbors()[j]->get_id() );
                     cout << player.get_edges()[i]->get_neighbors()[j]->get_id() << endl;
                 }
             }
@@ -309,7 +316,7 @@ namespace ariel {
         while (true) {
             int edge_id;
             cin >> edge_id;
-            if (board.getEdges()[edge_id].get_player_id() == "") {
+            if (std::find(possible_edges.begin(), possible_edges.end(), edge_id) != possible_edges.end()) {
                 board.getEdges()[edge_id].set_player_id(player.get_name());
                 player.add_edge(&board.getEdges()[edge_id]);
 
@@ -323,11 +330,15 @@ namespace ariel {
 
     void Game::buildSettlement(Player &player) {
         cout << "player " << player.get_name() << " which vertex do you want to put? the option are:" << endl;
-        bool bol =player.printPossibleSettlements(board);
-        if (!bol){
-//            cout << "player " << player.get_name() << " does not have enough resources to build a settlement" << endl;
-            return;
-        }
+//        bool bol =player.printPossibleSettlements(board);
+//        if (!bol){
+////            cout << "player " << player.get_name() << " does not have enough resources to build a settlement" << endl;
+//            return;
+//        }
+    if (!player.valid_satlement(board)){
+        cout << "player " << player.get_name() << " does not have  place to build a settlement" << endl;
+        return;
+    }
         cout << "enter the vertex id" << endl;
         while (true) {
             int vertex_id;
