@@ -46,6 +46,7 @@ namespace ariel {
         int longestRoad();
         void addDevelopmentCard(DevelopmentCard card);
         bool printPossibleSettlements(Board& b);
+        bool valid_satlement(Board& b);
     private:
         std::string name;
         int victoryPoints;

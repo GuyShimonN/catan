@@ -19,12 +19,15 @@
             std::vector<edge*>& get_neighbors()  { return neighbors; }
             void set_player_id(std::string id);
             std::string get_player_id() const { return player_id; }
+            void add_vertex(vertex* v);
+            std::vector<vertex*>& get_vertexes() { return vertexes; }
 
         private:
             int id;
             int sub_id;
             std::vector<edge*>neighbors;
             std::string player_id;
+            std::vector<vertex*> vertexes;
         };
 
     } // namespace ariel

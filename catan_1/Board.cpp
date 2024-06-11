@@ -1079,203 +1079,347 @@ namespace ariel {
 
     void Board::initialize_vertex_to_edge(){
         vertices[0].add_edge(&edges[0]);
+        edges[0].add_vertex(&vertices[0]);
         vertices[0].add_edge(&edges[5]);
+        edges[5].add_vertex(&vertices[0]);
 
         vertices[1].add_edge(&edges[0]);
+        edges[0].add_vertex(&vertices[1]);
         vertices[1].add_edge(&edges[1]);
+        edges[1].add_vertex(&vertices[1]);
 
         vertices[2].add_edge(&edges[1]);
+        edges[1].add_vertex(&vertices[2]);
         vertices[2].add_edge(&edges[2]);
+        edges[2].add_vertex(&vertices[2]);
         vertices[2].add_edge(&edges[6]);
+        edges[6].add_vertex(&vertices[2]);
 
         vertices[3].add_edge(&edges[6]);
+        edges[6].add_vertex(&vertices[3]);
         vertices[3].add_edge(&edges[7]);
+        edges[7].add_vertex(&vertices[3]);
 
         vertices[4].add_edge(&edges[7]);
+        edges[7].add_vertex(&vertices[4]);
         vertices[4].add_edge(&edges[8]);
+        edges[8].add_vertex(&vertices[4]);
         vertices[4].add_edge(&edges[11]);
+        edges[11].add_vertex(&vertices[4]);
 
         vertices[5].add_edge(&edges[11]);
+        edges[11].add_vertex(&vertices[5]);
         vertices[5].add_edge(&edges[12]);
+        edges[12].add_vertex(&vertices[5]);
 
         vertices[6].add_edge(&edges[12]);
+        edges[12].add_vertex(&vertices[6]);
         vertices[6].add_edge(&edges[13]);
+        edges[13].add_vertex(&vertices[6]);
 
         vertices[7].add_edge(&edges[5]);
+        edges[5].add_vertex(&vertices[7]);
         vertices[7].add_edge(&edges[4]);
+        edges[4].add_vertex(&vertices[7]);
         vertices[7].add_edge(&edges[16]);
+        edges[16].add_vertex(&vertices[7]);
 
         vertices[8].add_edge(&edges[4]);
+        edges[4].add_vertex(&vertices[8]);
         vertices[8].add_edge(&edges[3]);
+        edges[3].add_vertex(&vertices[8]);
         vertices[8].add_edge(&edges[17]);
+        edges[17].add_vertex(&vertices[8]);
 
         vertices[9].add_edge(&edges[2]);
+        edges[2].add_vertex(&vertices[9]);
         vertices[9].add_edge(&edges[3]);
+        edges[3].add_vertex(&vertices[9]);
         vertices[9].add_edge(&edges[10]);
+        edges[10].add_vertex(&vertices[9]);
 
         vertices[10].add_edge(&edges[9]);
+        edges[9].add_vertex(&vertices[10]);
         vertices[10].add_edge(&edges[10]);
+        edges[10].add_vertex(&vertices[10]);
         vertices[10].add_edge(&edges[21]);
+        edges[21].add_vertex(&vertices[10]);
 
         vertices[11].add_edge(&edges[9]);
+        edges[9].add_vertex(&vertices[11]);
         vertices[11].add_edge(&edges[8]);
+        edges[8].add_vertex(&vertices[11]);
         vertices[11].add_edge(&edges[15]);
+        edges[15].add_vertex(&vertices[11]);
 
         vertices[12].add_edge(&edges[14]);
+        edges[14].add_vertex(&vertices[12]);
         vertices[12].add_edge(&edges[15]);
+        edges[15].add_vertex(&vertices[12]);
         vertices[12].add_edge(&edges[24]);
+        edges[24].add_vertex(&vertices[12]);
 
         vertices[13].add_edge(&edges[14]);
+        edges[14].add_vertex(&vertices[13]);
         vertices[13].add_edge(&edges[13]);
+        edges[13].add_vertex(&vertices[13]);
         vertices[13].add_edge(&edges[27]);
+        edges[27].add_vertex(&vertices[13]);
 
         vertices[14].add_edge(&edges[27]);
+        edges[27].add_vertex(&vertices[14]);
         vertices[14].add_edge(&edges[28]);
+        edges[28].add_vertex(&vertices[14]);
 
         vertices[15].add_edge(&edges[20]);
+        edges[20].add_vertex(&vertices[15]);
         vertices[15].add_edge(&edges[16]);
+        edges[16].add_vertex(&vertices[15]);
 
         vertices[16].add_edge(&edges[31]);
+        edges[31].add_vertex(&vertices[16]);
         vertices[16].add_edge(&edges[35]);
+        edges[35].add_vertex(&vertices[16]);
 
         vertices[17].add_edge(&edges[20]);
+        edges[20].add_vertex(&vertices[17]);
         vertices[17].add_edge(&edges[19]);
+        edges[19].add_vertex(&vertices[17]);
         vertices[17].add_edge(&edges[31]);
+        edges[31].add_vertex(&vertices[17]);
 
         vertices[18].add_edge(&edges[18]);
+        edges[18].add_vertex(&vertices[18]);
         vertices[18].add_edge(&edges[19]);
+        edges[19].add_vertex(&vertices[18]);
         vertices[18].add_edge(&edges[32]);
+        edges[32].add_vertex(&vertices[18]);
 
         vertices[19].add_edge(&edges[17]);
+        edges[17].add_vertex(&vertices[19]);
         vertices[19].add_edge(&edges[18]);
+        edges[18].add_vertex(&vertices[19]);
         vertices[19].add_edge(&edges[23]);
+        edges[23].add_vertex(&vertices[19]);
 
         vertices[20].add_edge(&edges[22]);
+        edges[22].add_vertex(&vertices[20]);
         vertices[20].add_edge(&edges[23]);
+        edges[23].add_vertex(&vertices[20]);
         vertices[20].add_edge(&edges[36]);
+        edges[36].add_vertex(&vertices[20]);
 
         vertices[21].add_edge(&edges[21]);
+        edges[21].add_vertex(&vertices[21]);
         vertices[21].add_edge(&edges[22]);
+        edges[22].add_vertex(&vertices[21]);
         vertices[21].add_edge(&edges[26]);
+        edges[26].add_vertex(&vertices[21]);
 
         vertices[22].add_edge(&edges[25]);
+        edges[25].add_vertex(&vertices[22]);
         vertices[22].add_edge(&edges[26]);
+        edges[26].add_vertex(&vertices[22]);
         vertices[22].add_edge(&edges[39]);
+        edges[39].add_vertex(&vertices[22]);
 
         vertices[23].add_edge(&edges[30]);
+        edges[30].add_vertex(&vertices[23]);
         vertices[23].add_edge(&edges[24]);
+        edges[24].add_vertex(&vertices[23]);
         vertices[23].add_edge(&edges[25]);
+        edges[25].add_vertex(&vertices[23]);
 
         vertices[24].add_edge(&edges[29]);
+        edges[29].add_vertex(&vertices[24]);
         vertices[24].add_edge(&edges[30]);
+        edges[30].add_vertex(&vertices[24]);
         vertices[24].add_edge(&edges[42]);
+        edges[42].add_vertex(&vertices[24]);
 
         vertices[25].add_edge(&edges[29]);
+        edges[29].add_vertex(&vertices[25]);
         vertices[25].add_edge(&edges[28]);
+        edges[28].add_vertex(&vertices[25]);
         vertices[25].add_edge(&edges[45]);
+        edges[45].add_vertex(&vertices[25]);
 
         vertices[26].add_edge(&edges[46]);
+        edges[46].add_vertex(&vertices[26]);
         vertices[26].add_edge(&edges[45]);
+        edges[45].add_vertex(&vertices[26]);
 
         vertices[27].add_edge(&edges[46]);
+        edges[46].add_vertex(&vertices[27]);
         vertices[27].add_edge(&edges[47]);
+        edges[47].add_vertex(&vertices[27]);
 
         vertices[28].add_edge(&edges[47]);
+        edges[47].add_vertex(&vertices[28]);
         vertices[28].add_edge(&edges[48]);
+        edges[48].add_vertex(&vertices[28]);
         vertices[28].add_edge(&edges[59]);
+        edges[59].add_vertex(&vertices[28]);
 
         vertices[29].add_edge(&edges[42]);
+        edges[42].add_vertex(&vertices[29]);
         vertices[29].add_edge(&edges[48]);
+        edges[48].add_vertex(&vertices[29]);
         vertices[29].add_edge(&edges[43]);
+        edges[43].add_vertex(&vertices[29]);
 
         vertices[30].add_edge(&edges[43]);
+        edges[43].add_vertex(&vertices[30]);
         vertices[30].add_edge(&edges[44]);
+        edges[44].add_vertex(&vertices[30]);
         vertices[30].add_edge(&edges[56]);
+        edges[56].add_vertex(&vertices[30]);
 
         vertices[31].add_edge(&edges[39]);
+        edges[39].add_vertex(&vertices[31]);
         vertices[31].add_edge(&edges[44]);
+        edges[44].add_vertex(&vertices[31]);
         vertices[31].add_edge(&edges[40]);
+        edges[40].add_vertex(&vertices[31]);
 
         vertices[32].add_edge(&edges[40]);
+        edges[40].add_vertex(&vertices[32]);
         vertices[32].add_edge(&edges[41]);
+        edges[41].add_vertex(&vertices[32]);
         vertices[32].add_edge(&edges[53]);
+        edges[53].add_vertex(&vertices[32]);
 
         vertices[33].add_edge(&edges[36]);
+        edges[36].add_vertex(&vertices[33]);
         vertices[33].add_edge(&edges[41]);
+        edges[41].add_vertex(&vertices[33]);
         vertices[33].add_edge(&edges[37]);
+        edges[37].add_vertex(&vertices[33]);
 
 
         vertices[34].add_edge(&edges[38]);
+        edges[38].add_vertex(&vertices[34]);
         vertices[34].add_edge(&edges[49]);
+        edges[49].add_vertex(&vertices[34]);
         vertices[34].add_edge(&edges[37]);
+        edges[37].add_vertex(&vertices[34]);
 
         vertices[35].add_edge(&edges[38]);
+        edges[38].add_vertex(&vertices[35]);
         vertices[35].add_edge(&edges[32]);
+        edges[32].add_vertex(&vertices[35]);
         vertices[35].add_edge(&edges[33]);
+        edges[33].add_vertex(&vertices[35]);
 
         vertices[36].add_edge(&edges[52]);
+        edges[52].add_vertex(&vertices[36]);
         vertices[36].add_edge(&edges[34]);
+        edges[34].add_vertex(&vertices[36]);
         vertices[36].add_edge(&edges[33]);
+        edges[33].add_vertex(&vertices[36]);
 
         vertices[37].add_edge(&edges[35]);
+        edges[35].add_vertex(&vertices[37]);
         vertices[37].add_edge(&edges[34]);
+        edges[34].add_vertex(&vertices[37]);
 
         vertices[38].add_edge(&edges[52]);
+        edges[52].add_vertex(&vertices[38]);
         vertices[38].add_edge(&edges[51]);
+        edges[51].add_vertex(&vertices[38]);
 
         vertices[39].add_edge(&edges[50]);
+        edges[50].add_vertex(&vertices[39]);
         vertices[39].add_edge(&edges[51]);
+        edges[51].add_vertex(&vertices[39]);
         vertices[39].add_edge(&edges[65]);
+        edges[65].add_vertex(&vertices[39]);
 
         vertices[40].add_edge(&edges[49]);
+        edges[49].add_vertex(&vertices[40]);
         vertices[40].add_edge(&edges[50]);
+        edges[50].add_vertex(&vertices[40]);
         vertices[40].add_edge(&edges[55]);
+        edges[55].add_vertex(&vertices[40]);
 
         vertices[41].add_edge(&edges[55]);
+        edges[55].add_vertex(&vertices[41]);
         vertices[41].add_edge(&edges[54]);
+        edges[54].add_vertex(&vertices[41]);
         vertices[41].add_edge(&edges[62]);
+        edges[62].add_vertex(&vertices[41]);
 
         vertices[42].add_edge(&edges[53]);
+        edges[53].add_vertex(&vertices[42]);
         vertices[42].add_edge(&edges[54]);
+        edges[54].add_vertex(&vertices[42]);
         vertices[42].add_edge(&edges[58]);
+        edges[58].add_vertex(&vertices[42]);
 
         vertices[43].add_edge(&edges[58]);
+        edges[58].add_vertex(&vertices[43]);
         vertices[43].add_edge(&edges[57]);
+        edges[57].add_vertex(&vertices[43]);
         vertices[43].add_edge(&edges[66]);
+        edges[66].add_vertex(&vertices[43]);
 
         vertices[44].add_edge(&edges[56]);
+        edges[56].add_vertex(&vertices[44]);
         vertices[44].add_edge(&edges[57]);
+        edges[57].add_vertex(&vertices[44]);
         vertices[44].add_edge(&edges[61]);
+        edges[61].add_vertex(&vertices[44]);
 
         vertices[45].add_edge(&edges[60]);
+        edges[60].add_vertex(&vertices[45]);
         vertices[45].add_edge(&edges[61]);
+        edges[61].add_vertex(&vertices[45]);
         vertices[45].add_edge(&edges[69]);
+        edges[69].add_vertex(&vertices[45]);
 
         vertices[46].add_edge(&edges[59]);
+        edges[59].add_vertex(&vertices[46]);
         vertices[46].add_edge(&edges[60]);
+        edges[60].add_vertex(&vertices[46]);
 
         vertices[47].add_edge(&edges[69]);
+        edges[69].add_vertex(&vertices[47]);
         vertices[47].add_edge(&edges[70]);
+        edges[70].add_vertex(&vertices[47]);
 
         vertices[48].add_edge(&edges[70]);
+        edges[70].add_vertex(&vertices[48]);
         vertices[48].add_edge(&edges[71]);
+        edges[71].add_vertex(&vertices[48]);
 
         vertices[49].add_edge(&edges[66]);
+        edges[66].add_vertex(&vertices[49]);
         vertices[49].add_edge(&edges[67]);
+        edges[67].add_vertex(&vertices[49]);
         vertices[49].add_edge(&edges[71]);
+        edges[71].add_vertex(&vertices[49]);
 
         vertices[50].add_edge(&edges[67]);
+        edges[67].add_vertex(&vertices[50]);
         vertices[50].add_edge(&edges[68]);
+        edges[68].add_vertex(&vertices[50]);
 
         vertices[51].add_edge(&edges[63]);
+        edges[63].add_vertex(&vertices[51]);
         vertices[51].add_edge(&edges[62]);
+        edges[62].add_vertex(&vertices[51]);
         vertices[51].add_edge(&edges[68]);
+        edges[68].add_vertex(&vertices[51]);
 
         vertices[52].add_edge(&edges[63]);
+        edges[63].add_vertex(&vertices[52]);
         vertices[52].add_edge(&edges[64]);
+        edges[64].add_vertex(&vertices[52]);
 
         vertices[53].add_edge(&edges[64]);
+        edges[64].add_vertex(&vertices[53]);
         vertices[53].add_edge(&edges[65]);
+        edges[65].add_vertex(&vertices[53]);
 
 
 

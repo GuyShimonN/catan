@@ -27,8 +27,8 @@ namespace ariel {
         buildSettlement_for_the_first(player3, 18);
         add_resource_for_the_first(player3, board.getVertices()[18]);
 
-        buildSettlement_for_the_first(player2, 30);
-        add_resource_for_the_first(player2, board.getVertices()[30]);
+        buildSettlement_for_the_first(player2, 32);
+        add_resource_for_the_first(player2, board.getVertices()[32]);
 
         buildSettlement_for_the_first(player1, 40);
         add_resource_for_the_first(player1, board.getVertices()[40]);
@@ -199,7 +199,7 @@ namespace ariel {
     }
 
     void Game::diceRoll() {
-
+        cout << "Round " << round << endl;
         int dice = (rand() % 6 + 1) + (rand() % 6 + 1);
         if (round < 3 && dice == 7) {
             diceRoll();
@@ -325,7 +325,7 @@ namespace ariel {
         cout << "player " << player.get_name() << " which vertex do you want to put? the option are:" << endl;
         bool bol =player.printPossibleSettlements(board);
         if (!bol){
-            cout << "player " << player.get_name() << " does not have enough resources to build a settlement" << endl;
+//            cout << "player " << player.get_name() << " does not have enough resources to build a settlement" << endl;
             return;
         }
         cout << "enter the vertex id" << endl;

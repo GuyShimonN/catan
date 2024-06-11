@@ -192,15 +192,19 @@ namespace ariel {
     bool Player::isConnectedToRoad(vertex& v) {
         for (edge* e : v.get_edges()) {
             if (e->get_player_id() == this->get_name()) {
+                std::cout << "connected to road" << std::endl;
                 return true;
             }
+            std::cout << "not connected to road edge: " << e->get_id()<<std::endl;
         }
         return false;
     }
 
     bool Player::noAdjacentBuildings(vertex& v) {
         for (vertex* neighbor : v.get_verrices()) {
-            if (neighbor->get_city_type() != vertex::city::NONE) {                return false;
+            if (neighbor->get_city_type() != vertex::city::NONE) {
+                std::cout << "adjacent building" << std::endl;
+                return false;
             }
         }
         return true;
@@ -208,6 +212,18 @@ namespace ariel {
     void Player::addDevelopmentCard(DevelopmentCard card){
         developmentCards.push_back(card);
     }
+    bool Player::valid_satlement(Board& b){
+        for (edge *e : edges) {
+            for (edge *neighbor : e->get_neighbors()) {
+               if (neighbor->)
+            }
+        }
+             for (vertex *v : e->get_vertices()) {
+           if (v->get_city_type() != vertex::city::NONE) {
+               return false;
+           }
+       }
+   }
 
 
 }
