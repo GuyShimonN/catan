@@ -10,6 +10,7 @@
 #include <string>
 #include "Board.h"
 #include "vertex.h"
+#include <set>
 
 namespace ariel {
     class edge; // Forward declaration
@@ -46,7 +47,7 @@ namespace ariel {
         int longestRoad();
         void addDevelopmentCard(DevelopmentCard card);
         bool printPossibleSettlements(Board& b);
-        bool valid_satlement(Board& b);
+        bool valid_settlement(Board &b, std::set<int> &intSet);
     private:
         std::string name;
         int victoryPoints;

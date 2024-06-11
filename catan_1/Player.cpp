@@ -229,78 +229,81 @@ namespace ariel {
         developmentCards.push_back(card);
     }
 
-    bool Player::valid_satlement(Board &b) {
+    bool Player::valid_settlement(Board &b, std::set<int> &intSet) {
         bool flagg = false;
         for (edge *e: edges) {
-            std::cout << "edge id: " << e->get_id() << std::endl;
+//            std::cout << "edge id: " << e->get_id() << std::endl;
             for (edge *neighbor: e->get_neighbors()) {
                 if (neighbor->get_player_id() == this->get_name()) {
 
-                std::cout << "neighbor id: " << neighbor->get_id() << std::endl;
+//                std::cout << "neighbor id: " << neighbor->get_id() << std::endl;
                 if (neighbor->get_vertexes()[0]->get_id() != e->get_vertexes()[0]->get_id() &&
                     neighbor->get_vertexes()[0]->get_id() != e->get_vertexes()[1]->get_id()) {
-                    std::cout << "vertex id: " << neighbor->get_vertexes()[0]->get_id() << std::endl;
+//                    std::cout << "vertex id: " << neighbor->get_vertexes()[0]->get_id() << std::endl;
                     bool flag = true;
                     for (vertex *v: neighbor->get_vertexes()[0]->get_verrices()) {
                         if (v->get_city_type() != vertex::city::NONE) {
-                            std::cout << "vertex id is in use: " << v->get_id() << std::endl;
+//                            std::cout << "vertex id is in use: " << v->get_id() << std::endl;
                             flag = false;
                         }
-                        if (flag) {
-                            std::cout << "vertex id: " << v->get_id() << std::endl;
+                        if (flag && neighbor->get_vertexes()[0]->get_player_id()!=this->get_name() ) {
+//                            std::cout << "vertex id: " << neighbor->get_vertexes()[0]->get_id()<< std::endl;
                             flagg = true;
-
+                            intSet.insert(neighbor->get_vertexes()[0]->get_id());
                         }
                     }
                 }
                 if (neighbor->get_vertexes()[1]->get_id() != e->get_vertexes()[0]->get_id() &&
                     neighbor->get_vertexes()[1]->get_id() != e->get_vertexes()[1]->get_id()) {
-                    std::cout << "vertex id: " << neighbor->get_vertexes()[1]->get_id() << std::endl;
+//                    std::cout << "vertex id: " << neighbor->get_vertexes()[1]->get_id() << std::endl;
                     bool flag = true;
                     for (vertex *v: neighbor->get_vertexes()[1]->get_verrices()) {
                         if (v->get_city_type() != vertex::city::NONE) {
                             flag = false;
-                            std::cout << "vertex id is in use: " << v->get_id() << std::endl;
+//                            std::cout << "vertex id is in use: " << v->get_id() << std::endl;
 
                         }
-                        if (flag) {
-                            std::cout << "vertex id: " << v->get_id() << std::endl;
+                        if (flag && neighbor->get_vertexes()[1]->get_player_id()!=this->get_name()) {
+//                            std::cout << "vertex id: " << neighbor->get_vertexes()[1]->get_id() << std::endl;
                             flagg = true;
-
+                            intSet.insert(neighbor->get_vertexes()[1]->get_id());
                         }
                     }
 
                 }
                 if (e->get_vertexes()[0]->get_id() != neighbor->get_vertexes()[0]->get_id() &&
                     e->get_vertexes()[0]->get_id() != neighbor->get_vertexes()[1]->get_id()) {
-                    std::cout << "vertex id: " << e->get_vertexes()[0]->get_id() << std::endl;
+//                    std::cout << "vertex id: " << e->get_vertexes()[0]->get_id() << std::endl;
                     bool flag = true;
                     for (vertex *v: e->get_vertexes()[0]->get_verrices()) {
                         if (v->get_city_type() != vertex::city::NONE) {
                             flag = false;
-                            std::cout << "vertex id is in use: " << v->get_id() << std::endl;
+//                            std::cout << "vertex id is in use: " << v->get_id() << std::endl;
 
                         }
-                        if (flag) {
-                            std::cout << "vertex id: " << v->get_id() << std::endl;
+                        if (flag && e->get_vertexes()[0]->get_player_id()!=this->get_name()) {
+//                            std::cout << "vertex id: " << e->get_vertexes()[0]->get_id() << std::endl;
                             flagg = true;
-
+                            intSet.insert(e->get_vertexes()[0]->get_id());
                         }
                     }
                 }
                 if (e->get_vertexes()[1]->get_id() != neighbor->get_vertexes()[0]->get_id() &&
                     e->get_vertexes()[1]->get_id() != neighbor->get_vertexes()[1]->get_id()) {
-                    std::cout << "vertex id: " << e->get_vertexes()[1]->get_id() << std::endl;
+//                    std::cout << "vertex id: " << e->get_vertexes()[1]->get_id() << std::endl;
+
                     bool flag = true;
                     for (vertex *v: e->get_vertexes()[1]->get_verrices()) {
                         if (v->get_city_type() != vertex::city::NONE) {
                             flag = false;
-                            std::cout << "vertex id is in use: " << v->get_id() << std::endl;
+//                            std::cout << "vertex id is in use: " << v->get_id() << std::endl;
 
                         }
-                        if (flag) {
-                            std::cout << "vertex id: " << v->get_id() << std::endl;
-                            flagg = true;
+                        if (flag && e->get_vertexes()[1]->get_player_id()!=this->get_name()) {
+
+//                                std::cout << "vertex id: " << e->get_vertexes()[1]->get_id() << std::endl;
+                                flagg = true;
+                                intSet.insert(e->get_vertexes()[1]->get_id());
 
                         }
                     }

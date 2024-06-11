@@ -330,14 +330,18 @@ namespace ariel {
 
     void Game::buildSettlement(Player &player) {
         cout << "player " << player.get_name() << " which vertex do you want to put? the option are:" << endl;
-//        bool bol =player.printPossibleSettlements(board);
-//        if (!bol){
-////            cout << "player " << player.get_name() << " does not have enough resources to build a settlement" << endl;
-//            return;
-//        }
-    if (!player.valid_satlement(board)){
+        std::set<int> intSet;
+        if (!player.valid_settlement(board, intSet)){
         cout << "player " << player.get_name() << " does not have  place to build a settlement" << endl;
-        return;
+        return;//check if the player have the place to build
+    }
+        for (const auto &value : intSet) {
+            std::cout << value << std::endl;
+        }
+    if (!(player.valid_resource(Resource::BRICK, 1) && player.valid_resource(Resource::WOOD, 1) &&
+          player.valid_resource(Resource::WOOL, 1) && player.valid_resource(Resource::GRAIN, 1))) {
+        cout << "player " << player.get_name() << " does not have enough resources to build a settlement" << endl;
+        return;  //check if the player have the resources
     }
         cout << "enter the vertex id" << endl;
         while (true) {
