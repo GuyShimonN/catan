@@ -11,14 +11,13 @@
 
 using namespace std;
 namespace ariel {
-    Game::Game(Board &board, Player &player1, Player &player2, Player &player3) : board(board), player1(player1),
-                                                                                  player2(player2), player3(player3),
-                                                                                  round(0) {
-
+    Game::Game(Board &board, Player &player1, Player &player2, Player &player3)
+            : board(board), player1(player1), player2(player2), player3(player3),
+              player_with_most_knights(player1), knight(false) {
         players.push_back(&player1);
         players.push_back(&player2);
         players.push_back(&player3);
-        cout<< Resource::WOOD<<endl;
+//        cout<< Resource::WOOD<<endl;
 
 //        load_image();
         buildSettlement_for_the_first(player1, 8);
@@ -35,10 +34,11 @@ namespace ariel {
         add_resource_for_the_first(player1, board.getVertices()[40]);
         play();
     }
+
     void Game::add_resource_for_the_first(Player &player, vertex &vertex) {
         for (Tile *tile: vertex.get_tiles()) {
             player.addResource(tile->getResource(), 1);
-            cout<< "player " << player.get_name() << " get 1 " << tile->getResource() << endl;
+            cout << "player " << player.get_name() << " get 1 " << tile->getResource() << endl;
         }
     }
 
@@ -49,8 +49,8 @@ namespace ariel {
         }
         vertex &v = board.getVertices()[vertex_id];
         v.set_city_type(vertex::city::SETTLEMENT);
-        cout<< v.get_city_type()<<endl;
-        cout<<board.getVertices()[vertex_id].get_city_type()<<endl;
+        cout << v.get_city_type() << endl;
+        cout << board.getVertices()[vertex_id].get_city_type() << endl;
         v.set_player_id(player.get_name());
         player.add_vertex(&v);
         cout << "test chack that the player is the owner of the vertex: " << v.get_player_id() << endl;
@@ -88,7 +88,7 @@ namespace ariel {
 
     bool Game::chack_valid_city(int ver_id) {
         vertex v = this->board.getVertices()[ver_id];
-        for (vertex *p: v.get_verrices()) {
+        for (vertex *p: v.get_vertices()) {
             if (p->get_city_type() != vertex::city::NONE)return false;
         }
         return true;
@@ -133,35 +133,45 @@ namespace ariel {
         if (city == vertex::city::SETTLEMENT) {
             if (resource == Resource::WOOD) {
                 Game::get_player(player_id)->addResource(Resource::WOOD, 1);
+                cout << "player " << player_id << " get 1  wood" << endl;
             }
             if (resource == Resource::BRICK) {
                 Game::get_player(player_id)->addResource(Resource::BRICK, 1);
+                cout << "player " << player_id << " get 1  brick" << endl;
             }
             if (resource == Resource::WOOL) {
                 Game::get_player(player_id)->addResource(Resource::WOOL, 1);
+                cout << "player " << player_id << " get 1  wool" << endl;
             }
             if (resource == Resource::GRAIN) {
                 Game::get_player(player_id)->addResource(Resource::GRAIN, 1);
+                cout << "player " << player_id << " get 1  grain" << endl;
             }
             if (resource == Resource::ORE) {
                 Game::get_player(player_id)->addResource(Resource::ORE, 1);
+                cout << "player " << player_id << " get 1  ore" << endl;
             }
         }
         if (city == vertex::city::CITY) {
             if (resource == Resource::WOOD) {
                 Game::get_player(player_id)->addResource(Resource::WOOD, 2);
+                cout << "player " << player_id << " get 2  wood" << endl;
             }
             if (resource == Resource::BRICK) {
                 Game::get_player(player_id)->addResource(Resource::BRICK, 2);
+                cout << "player " << player_id << " get 2  brick" << endl;
             }
             if (resource == Resource::WOOL) {
                 Game::get_player(player_id)->addResource(Resource::WOOL, 2);
+                cout << "player " << player_id << " get 2  wool" << endl;
             }
             if (resource == Resource::GRAIN) {
                 Game::get_player(player_id)->addResource(Resource::GRAIN, 2);
+                cout << "player " << player_id << " get 2  grain" << endl;
             }
             if (resource == Resource::ORE) {
                 Game::get_player(player_id)->addResource(Resource::ORE, 2);
+                cout << "player " << player_id << " get 2  ore" << endl;
             }
         }
     }
@@ -223,6 +233,9 @@ namespace ariel {
     }
 
     void Game::play_turn(Player &player) {
+        if (GameOver()) {
+            return;
+        }
         diceRoll();
         while (true) {
             cout << "player " << player.get_name() << " what do you want to do?" << endl;
@@ -231,8 +244,10 @@ namespace ariel {
             cout << "3. build a city" << endl;
             cout << "4. buy a development card" << endl;
             cout << "5. trade with other player" << endl;
-            cout << "6. show the cards" << endl; //add this option
-            cout << "7. end turn" << endl;
+            cout << "6. use development card" << endl;
+            cout << "7. show the cards" << endl;
+            cout << "8. print all info" << endl;
+            cout << "9. end turn" << endl;
             int option;
             if (!(cin >> option)) {
                 cin.clear();  // Clear the fail state
@@ -251,7 +266,7 @@ namespace ariel {
                 player.buildCity(board);
             }
             if (option == 4) {
-                if(player.buyDevelopmentCard())add_development_card(player);
+                if (player.buyDevelopmentCard())add_development_card(player);
             }
             if (option == 5) {
                 cout << "player " << player.get_name() << " which player do you want to trade with?" << endl;
@@ -284,14 +299,20 @@ namespace ariel {
                 cout << "player " << player.get_name() << " how many resources do you want to receive?" << endl;
                 int receive_qty;
                 cin >> receive_qty;
-                player.trade(*get_player(other_player), Resource::Type(give-1), give_qty, Resource::Type(receive-1),
+                player.trade(*get_player(other_player), Resource::Type(give - 1), give_qty, Resource::Type(receive - 1),
                              receive_qty);
             }
             if (option == 6) {
+                useDevelopmentCard(player);
+            }
+            if (option == 7) {
                 player.print_cards();
             }
+            if (option == 8) {
+                player.printinfo();
+            }
 
-            if (option == 7) {
+            if (option == 9) {
                 break;
             }
         }
@@ -312,7 +333,7 @@ namespace ariel {
         for (int i = 0; i < sun; i++) {
             for (size_t j = 0; j < player.get_edges()[i]->get_neighbors().size(); j++) {
                 if (player.get_edges()[i]->get_neighbors()[j]->get_player_id() == "") {
-                    possible_edges.push_back(player.get_edges()[i]->get_neighbors()[j]->get_id() );
+                    possible_edges.push_back(player.get_edges()[i]->get_neighbors()[j]->get_id());
                     cout << player.get_edges()[i]->get_neighbors()[j]->get_id() << endl;
                 }
             }
@@ -336,23 +357,23 @@ namespace ariel {
     void Game::buildSettlement(Player &player) {
         cout << "player " << player.get_name() << " which vertex do you want to put? the option are:" << endl;
         std::set<int> intSet;
-        if (!player.valid_settlement(board, intSet)){
-        cout << "player " << player.get_name() << " does not have  place to build a settlement" << endl;
-        return;//check if the player have the place to build
-    }
-        for (const auto &value : intSet) {
+        if (!player.valid_settlement(board, intSet)) {
+            cout << "player " << player.get_name() << " does not have  place to build a settlement" << endl;
+            return;//check if the player have the place to build
+        }
+        for (const auto &value: intSet) {
             std::cout << value << std::endl;
         }
-    if (!(player.valid_resource(Resource::BRICK, 1) && player.valid_resource(Resource::WOOD, 1) &&
-          player.valid_resource(Resource::WOOL, 1) && player.valid_resource(Resource::GRAIN, 1))) {
-        cout << "player " << player.get_name() << " does not have enough resources to build a settlement" << endl;
-        return;  //check if the player have the resources
-    }
+        if (!(player.valid_resource(Resource::BRICK, 1) && player.valid_resource(Resource::WOOD, 1) &&
+              player.valid_resource(Resource::WOOL, 1) && player.valid_resource(Resource::GRAIN, 1))) {
+            cout << "player " << player.get_name() << " does not have enough resources to build a settlement" << endl;
+            return;  //check if the player have the resources
+        }
         cout << "enter the vertex id" << endl;
         while (true) {
             int vertex_id;
             cin >> vertex_id;
-            if (std::find(intSet.begin(), intSet.end(), vertex_id) != intSet.end()){
+            if (std::find(intSet.begin(), intSet.end(), vertex_id) != intSet.end()) {
                 board.getVertices()[vertex_id].set_city_type(vertex::city::SETTLEMENT);
                 board.getVertices()[vertex_id].set_player_id(player.get_name());
                 player.add_vertex(&board.getVertices()[vertex_id]);
@@ -368,10 +389,121 @@ namespace ariel {
     }
 
     void Game::add_development_card(Player &player) {
-        DevelopmentCard card;
-        player.addDevelopmentCard(card);
-//        player.addResource(type, 1);
-        cout << "player " << player.get_name() << " get 1 " << card.getType() << endl;
+        player.buyDevelopmentCard();
     }
+
+    bool Game::useDevelopmentCard(Player &player) {
+        cout << "player " << player.get_name() << " which development card do you want to use?" << endl;
+        player.printDevelopmentCards();
+        int option;
+        cin >> option;
+        if (option == 1) {
+            if (player.getDevelopmentCards()[0] > 0) {
+                cout << "player " << player.get_name() << " use a knight card its on the buy you have a "
+                     << player.getDevelopmentCards()[0] << "KNIGHT" << endl;
+                return true;
+            } else {
+                cout << "invalid option" << endl;
+                return false;
+            }
+        }
+        if (option == 2) {
+            if (player.getDevelopmentCards()[1] > 0) {
+                cout << "the victory point card it was on use and the victory point update when you buy this card"
+                     << endl;
+            } else {
+                cout << "invalid option" << endl;
+                return false;
+            }
+        }
+        if (option == 4) {
+            if (player.getDevelopmentCards()[2] > 0) {
+                cout << "whitch resource do you want to take from the other player?" << endl;
+                cout << "1. wood" << endl;
+                cout << "2. brick" << endl;
+                cout << "3. wool" << endl;
+                cout << "4. grain" << endl;
+                cout << "5. ore" << endl;
+                int resource;
+                cin >> resource;
+
+                for (Player *p: players) {
+                    if (p->get_name() != player.get_name()) {
+                        player.addResource(Resource::Type(resource - 1), p->get_resource_sp(resource - 1));
+                        cout << "player " << player.get_name() << " get " << p->get_resource_sp(resource - 1) << " "
+                             << Resource::Type(resource - 1) << endl;
+                        p->removeResource(Resource::Type(resource - 1), p->get_resource_sp(resource - 1));
+                        cout << "player " << p->get_name() << " lose " << p->get_resource_sp(resource - 1) << " "
+                             << Resource::Type(resource - 1) << endl;
+                    }
+                }
+                player.getDevelopmentCards()[2]--;
+                return true;
+            } else {
+                cout << "invalid option" << endl;
+                return false;
+            }
+        }
+        if (option == 3) {
+            if (player.getDevelopmentCards()[3] > 0) {
+                player.addResource(Resource::WOOD, 1);
+                player.addResource(Resource::BRICK, 1);
+                player.getDevelopmentCards()[3]--;
+                bild_road(player);
+            } else {
+                cout << "invalid option" << endl;
+                return false;
+            }
+        }
+        if (option == 5) {
+            if (player.getDevelopmentCards()[4] > 0) {
+                for (int i = 0; i < 2; i++) {
+                    cout << "whitch resource do you want to take?" << endl;
+                    cout << "1. wood" << endl;
+                    cout << "2. brick" << endl;
+                    cout << "3. wool" << endl;
+                    cout << "4. grain" << endl;
+                    cout << "5. ore" << endl;
+                    int resource;
+                    cin >> resource;
+                    player.addResource(Resource::Type(resource - 1), 1);
+                    cout << "player " << player.get_name() << " get 1 " << Resource::Type(resource - 1) << endl;
+                }
+                player.getDevelopmentCards()[4]--;
+            } else {
+                cout << "invalid option" << endl;
+                return false;
+            }
+        }
+        return true;
+    }
+
+    void Game::chack_largest_army(Player &player) {
+        if (max_knights < 3) {
+            if (player.get_knights() > max_knights) {
+                max_knights = player.get_knights();
+//                player_with_most_knights = player;
+            }
+        } else if (max_knights == 2 && player.get_knights() == 3) {
+            player_with_most_knights = player;
+            player_with_most_knights = player;
+            player.addVictoryPoints(2);
+            knight = true;
+            cout << "player " << player.get_name() << " get 2 victory points" << endl;
+        } else {
+            if (player != player_with_most_knights && knight) {
+                if (player.get_knights() > player_with_most_knights.get_knights()) {
+                    player_with_most_knights.addVictoryPoints(-2);
+                    std::cout << "player " << player_with_most_knights.get_name() << " lose 2 victory points"
+                              << std::endl;
+                    player_with_most_knights = player;
+                    player_with_most_knights.addVictoryPoints(2);
+                    std::cout << "player " << player_with_most_knights.get_name() << " get 2 victory points"
+                              << std::endl;
+                }
+            }
+        }
+    }
+
 
 }

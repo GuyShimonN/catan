@@ -17,6 +17,8 @@ namespace ariel {
     class vertex; // Forward declaration
     class Board; // Forward declaration
     class Player {
+        enum Type { KNIGHT, VICTORY_POINT, ROAD_BUILDING, MONOPOLY, YEAR_OF_PLENTY };
+
     public:
         Player(std::string name);
 
@@ -25,6 +27,7 @@ namespace ariel {
         int getVictoryPoints() const;
 
         void addVictoryPoints(int points);
+        int get_resource_sp(int i){return resources[i];}
 
         void addResource(Resource::Type type, int quantity);
 
@@ -48,11 +51,18 @@ namespace ariel {
         void addDevelopmentCard(DevelopmentCard card);
         bool printPossibleSettlements(Board& b);
         bool valid_settlement(Board &b, std::set<int> &intSet);
+        void printinfo();
+        void printDevelopmentCards();
+        bool operator!=(const Player& other) const {
+            return name != other.get_name();
+        }
+        int get_knights(){return developmentCards[0];}
+        std::vector<int>& getDevelopmentCards(){return developmentCards;}
     private:
         std::string name;
         int victoryPoints;
         std::vector<int> resources;
-        std::vector<DevelopmentCard> developmentCards;
+        std::vector<int> developmentCards;
         std::vector<Building> buildings;
         std::vector<Road> roads;
         std::vector<ariel::edge*> edges;
@@ -60,6 +70,7 @@ namespace ariel {
         int DFS(edge* current, std::unordered_set<edge*>& visited);
         bool isConnectedToRoad(vertex& v);
         bool noAdjacentBuildings(vertex& v);
+        bool chack_valid_city(int ver_id, Board &board);
     };
 }
 #endif // PLAYER_H

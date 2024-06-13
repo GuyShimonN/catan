@@ -12,6 +12,7 @@
 #include <opencv2/opencv.hpp>
 namespace ariel {
     class Game {
+        enum Type { KNIGHT, VICTORY_POINT, ROAD_BUILDING, MONOPOLY, YEAR_OF_PLENTY };
     public:
         Game( Board& board,Player& player1, Player& player2,Player& player3);
         void play();
@@ -36,6 +37,12 @@ namespace ariel {
         int round ;
         void add_resource_for_the_first(Player &player, vertex &vertex);
         void add_development_card(Player &player);
+         bool useDevelopmentCard(Player &player);
+         Player& player_with_most_knights;
+         void chack_largest_army(Player &player);
+         int max_knights;
+         bool knight;
+
 
     };
 
