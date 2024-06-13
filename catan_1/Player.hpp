@@ -32,7 +32,7 @@ namespace ariel {
 
         void buildSettlement();
 
-        void buildCity();
+        void buildCity(Board &b);
         bool valid_resource(Resource::Type type,int quantity);
         bool buildRoad();
         void print_cards();

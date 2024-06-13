@@ -18,6 +18,7 @@ namespace ariel {
         players.push_back(&player1);
         players.push_back(&player2);
         players.push_back(&player3);
+        cout<< Resource::WOOD<<endl;
 
 //        load_image();
         buildSettlement_for_the_first(player1, 8);
@@ -47,7 +48,9 @@ namespace ariel {
             return;
         }
         vertex &v = board.getVertices()[vertex_id];
-        v.set_city(Tile::city::SETTLEMENT);
+        v.set_city_type(vertex::city::SETTLEMENT);
+        cout<< v.get_city_type()<<endl;
+        cout<<board.getVertices()[vertex_id].get_city_type()<<endl;
         v.set_player_id(player.get_name());
         player.add_vertex(&v);
         cout << "test chack that the player is the owner of the vertex: " << v.get_player_id() << endl;
@@ -86,7 +89,7 @@ namespace ariel {
     bool Game::chack_valid_city(int ver_id) {
         vertex v = this->board.getVertices()[ver_id];
         for (vertex *p: v.get_verrices()) {
-            if (p->get_city() != vertex::city::NONE)return false;
+            if (p->get_city_type() != vertex::city::NONE)return false;
         }
         return true;
 
@@ -210,7 +213,7 @@ namespace ariel {
             if (board.getTiles()[i].getNumber() == dice) {
                 cout << "Tile " << i << " produced resources" << endl;
                 for (vertex *v: board.getTiles()[i].getVertices()) {
-                    if (v->get_city() != vertex::city::NONE) {
+                    if (v->get_city_type() != vertex::city::NONE) {
                         cout << "Player " << v->get_player_id() << " gets a resource" << endl;
                         add_resource(v->get_player_id(), board.getTiles()[i].getResource(), v->get_city_type());
                     }
@@ -245,7 +248,7 @@ namespace ariel {
                 buildSettlement(player);
             }
             if (option == 3) {
-                player.buildCity();
+                player.buildCity(board);
             }
             if (option == 4) {
                 if(player.buyDevelopmentCard())add_development_card(player);
@@ -281,7 +284,7 @@ namespace ariel {
                 cout << "player " << player.get_name() << " how many resources do you want to receive?" << endl;
                 int receive_qty;
                 cin >> receive_qty;
-                player.trade(*get_player(other_player), Resource::Type(give), give_qty, Resource::Type(receive),
+                player.trade(*get_player(other_player), Resource::Type(give-1), give_qty, Resource::Type(receive-1),
                              receive_qty);
             }
             if (option == 6) {
@@ -301,6 +304,8 @@ namespace ariel {
             cout << "player " << player.get_name() << " does not have enough resources to build a road" << endl;
             return;  //check if the player have the resources
         }
+        player.removeResource(Resource::BRICK, 1);
+        player.removeResource(Resource::WOOD, 1);
         cout << "player " << player.get_name() << " which edge do you want to put? the option are:" << endl;
 //        cout <<"you have :"<< player.get_edges().size() << " option."<<endl;
         int sun = player.get_edges().size();
@@ -347,17 +352,13 @@ namespace ariel {
         while (true) {
             int vertex_id;
             cin >> vertex_id;
-            if (board.getVertices()[vertex_id].get_city() == vertex::city::NONE) {
-                board.getVertices()[vertex_id].set_city(vertex::city::SETTLEMENT);
+            if (std::find(intSet.begin(), intSet.end(), vertex_id) != intSet.end()){
+                board.getVertices()[vertex_id].set_city_type(vertex::city::SETTLEMENT);
                 board.getVertices()[vertex_id].set_player_id(player.get_name());
                 player.add_vertex(&board.getVertices()[vertex_id]);
                 cout << "player " << player.get_name() << " build a settlement in vertex " << vertex_id << endl;
                 player.addVictoryPoints(1);
                 cout << "player " << player.get_name() << " get 1 victory point" << endl;
-                cout << "player " << player.get_name() << " which edge do you want to put? the option are:" << endl;
-                cout << board.getVertices()[vertex_id].get_edges().size() << endl;
-                board.getVertices()[vertex_id].print_edges();
-                cout << "enter the edge id" << endl;
                 break;
             } else {
                 cout << "invalid option" << endl;

@@ -64,20 +64,33 @@ namespace ariel {
 
     }
 
-    void Player::buildCity() {
-        if (removeResource(Resource::ORE, 3) && removeResource(Resource::GRAIN, 2)) {
-            auto it = std::find_if(buildings.begin(), buildings.end(), [](const Building &b) {
-                return b.getType() == Building::SETTLEMENT;
-            });
-            if (it != buildings.end()) {
-                buildings.erase(it);
-                buildings.push_back(Building(Building::CITY));
-                addVictoryPoints(1); // Net gain of 1 point (lose 1 for settlement, gain 2 for city)
-                std::cout << "City built. Total victory points: " << victoryPoints << std::endl;
+    void Player::buildCity(Board &b) {
+        std::set<int> intSet;
+        std::cout << "the option for building a city is: " << std::endl;
+        for (vertex *v: vertexes) {
+            if (v->get_city_type() == vertex::city::SETTLEMENT) {
+                std::cout << "Vertex " << v->get_id() << std::endl;
+                intSet.insert(v->get_id());
+            }
+        }
+        if (intSet.size() > 0 && valid_resource(Resource::ORE, 3) && valid_resource(Resource::GRAIN, 2)) {
+            std::cout << "Enter the vertex id to build a city: ";
+            while (true) {
+                int vertex_id;
+                std::cin >> vertex_id;
+                if (intSet.find(vertex_id) != intSet.end()) {
+                    removeResource(Resource::ORE, 3);
+                    removeResource(Resource::GRAIN, 2);
+                    b.getVertices()[vertex_id].set_city_type(vertex::city::CITY);
+                    addVictoryPoints(1);
+                    std::cout << "City built. Total victory points: " << victoryPoints << std::endl;
+                    break;
+                }
             }
         } else {
             std::cout << "Not enough resources to build a city." << std::endl;
         }
+
     }
 
     bool Player::buildRoad() {
@@ -216,7 +229,7 @@ namespace ariel {
     }
 
     bool Player::noAdjacentBuildings(vertex &v) {
-        for (vertex *neighbor: v.get_verrices()) {
+        for (vertex *neighbor: v.get_vertices()) {
             if (neighbor->get_city_type() != vertex::city::NONE) {
                 std::cout << "adjacent building" << std::endl;
                 return false;
@@ -232,84 +245,79 @@ namespace ariel {
     bool Player::valid_settlement(Board &b, std::set<int> &intSet) {
         bool flagg = false;
         for (edge *e: edges) {
-//            std::cout << "edge id: " << e->get_id() << std::endl;
             for (edge *neighbor: e->get_neighbors()) {
                 if (neighbor->get_player_id() == this->get_name()) {
-
-//                std::cout << "neighbor id: " << neighbor->get_id() << std::endl;
-                if (neighbor->get_vertexes()[0]->get_id() != e->get_vertexes()[0]->get_id() &&
-                    neighbor->get_vertexes()[0]->get_id() != e->get_vertexes()[1]->get_id()) {
-//                    std::cout << "vertex id: " << neighbor->get_vertexes()[0]->get_id() << std::endl;
-                    bool flag = true;
-                    for (vertex *v: neighbor->get_vertexes()[0]->get_verrices()) {
-                        if (v->get_city_type() != vertex::city::NONE) {
-//                            std::cout << "vertex id is in use: " << v->get_id() << std::endl;
-                            flag = false;
-                        }
-                        if (flag && neighbor->get_vertexes()[0]->get_player_id()!=this->get_name() ) {
-//                            std::cout << "vertex id: " << neighbor->get_vertexes()[0]->get_id()<< std::endl;
-                            flagg = true;
-                            intSet.insert(neighbor->get_vertexes()[0]->get_id());
+                    if (neighbor->get_vertexes()[0]->get_id() != e->get_vertexes()[0]->get_id() &&
+                        neighbor->get_vertexes()[0]->get_id() != e->get_vertexes()[1]->get_id()) {
+                        bool flag = true;
+                        for (vertex *v: neighbor->get_vertexes()[0]->get_vertices()) {
+                            if (v->get_city_type() != vertex::city::NONE) {
+                                flag = false;
+                            }
+                            if (flag && neighbor->get_vertexes()[0]->get_player_id() != this->get_name()) {
+                            std::cout << "vertex  1 id: " << neighbor->get_vertexes()[0]->get_id()<< std::endl;
+                                flagg = true;
+                                intSet.insert(neighbor->get_vertexes()[0]->get_id());
+                            }
                         }
                     }
-                }
-                if (neighbor->get_vertexes()[1]->get_id() != e->get_vertexes()[0]->get_id() &&
-                    neighbor->get_vertexes()[1]->get_id() != e->get_vertexes()[1]->get_id()) {
+                    if (neighbor->get_vertexes()[1]->get_id() != e->get_vertexes()[0]->get_id() &&
+                        neighbor->get_vertexes()[1]->get_id() != e->get_vertexes()[1]->get_id()) {
 //                    std::cout << "vertex id: " << neighbor->get_vertexes()[1]->get_id() << std::endl;
-                    bool flag = true;
-                    for (vertex *v: neighbor->get_vertexes()[1]->get_verrices()) {
-                        if (v->get_city_type() != vertex::city::NONE) {
-                            flag = false;
+                        bool flag = true;
+                        for (vertex *v: neighbor->get_vertexes()[1]->get_vertices()) {
+                            if (v->get_city_type() != vertex::city::NONE) {
+                                flag = false;
 //                            std::cout << "vertex id is in use: " << v->get_id() << std::endl;
 
+                            }
+                            if (flag && neighbor->get_vertexes()[1]->get_player_id() != this->get_name()) {
+                            std::cout << "vertex 2 id: " << neighbor->get_vertexes()[1]->get_id() << std::endl;
+                                flagg = true;
+                                intSet.insert(neighbor->get_vertexes()[1]->get_id());
+                            }
                         }
-                        if (flag && neighbor->get_vertexes()[1]->get_player_id()!=this->get_name()) {
-//                            std::cout << "vertex id: " << neighbor->get_vertexes()[1]->get_id() << std::endl;
-                            flagg = true;
-                            intSet.insert(neighbor->get_vertexes()[1]->get_id());
-                        }
-                    }
 
-                }
-                if (e->get_vertexes()[0]->get_id() != neighbor->get_vertexes()[0]->get_id() &&
-                    e->get_vertexes()[0]->get_id() != neighbor->get_vertexes()[1]->get_id()) {
+                    }
+                    if (e->get_vertexes()[0]->get_id() != neighbor->get_vertexes()[0]->get_id() &&
+                        e->get_vertexes()[0]->get_id() != neighbor->get_vertexes()[1]->get_id()) {
 //                    std::cout << "vertex id: " << e->get_vertexes()[0]->get_id() << std::endl;
-                    bool flag = true;
-                    for (vertex *v: e->get_vertexes()[0]->get_verrices()) {
-                        if (v->get_city_type() != vertex::city::NONE) {
-                            flag = false;
-//                            std::cout << "vertex id is in use: " << v->get_id() << std::endl;
+                        bool flag = true;
+                        for (vertex *v: e->get_vertexes()[0]->get_vertices()) {
+                            if (v->get_city_type() != vertex::city::NONE) {
+                                flag = false;
+                            std::cout << "vertex 3 id is in use: " << v->get_id() << std::endl;
 
-                        }
-                        if (flag && e->get_vertexes()[0]->get_player_id()!=this->get_name()) {
+                            }
+                            if (flag && e->get_vertexes()[0]->get_player_id() != this->get_name()) {
 //                            std::cout << "vertex id: " << e->get_vertexes()[0]->get_id() << std::endl;
-                            flagg = true;
-                            intSet.insert(e->get_vertexes()[0]->get_id());
+                                flagg = true;
+                                intSet.insert(e->get_vertexes()[0]->get_id());
+                            }
                         }
                     }
-                }
-                if (e->get_vertexes()[1]->get_id() != neighbor->get_vertexes()[0]->get_id() &&
-                    e->get_vertexes()[1]->get_id() != neighbor->get_vertexes()[1]->get_id()) {
+                    if (e->get_vertexes()[1]->get_id() != neighbor->get_vertexes()[0]->get_id() &&
+                        e->get_vertexes()[1]->get_id() != neighbor->get_vertexes()[1]->get_id()) {
 //                    std::cout << "vertex id: " << e->get_vertexes()[1]->get_id() << std::endl;
 
-                    bool flag = true;
-                    for (vertex *v: e->get_vertexes()[1]->get_verrices()) {
-                        if (v->get_city_type() != vertex::city::NONE) {
-                            flag = false;
+                        bool flag = true;
+                        for (vertex *v: e->get_vertexes()[1]->get_vertices()) {
+                            if (v->get_city_type() != vertex::city::NONE) {
+                                flag = false;
 //                            std::cout << "vertex id is in use: " << v->get_id() << std::endl;
 
-                        }
-                        if (flag && e->get_vertexes()[1]->get_player_id()!=this->get_name()) {
+                            }
+                            if (flag && e->get_vertexes()[1]->get_player_id() != this->get_name()) {
 
-//                                std::cout << "vertex id: " << e->get_vertexes()[1]->get_id() << std::endl;
+                                std::cout << "vertex  4 id: " << e->get_vertexes()[1]->get_id() << std::endl;
                                 flagg = true;
                                 intSet.insert(e->get_vertexes()[1]->get_id());
 
+                            }
                         }
                     }
-                }
 
-            }
+                }
             }
         }
         return flagg;

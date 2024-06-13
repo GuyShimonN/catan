@@ -3,7 +3,7 @@
 #include <iostream>
 namespace ariel {
 
-    vertex::vertex(int id, int sub_id) : id(id), sub_id(sub_id), city(2) ,city_type(NONE){
+    vertex::vertex(int id, int sub_id) : id(id), sub_id(sub_id),city_type(NONE){
         // Initialize tiles as an empty vector
     }
 
@@ -16,11 +16,11 @@ namespace ariel {
         edges.push_back(e);
 //        std::cout << "Edge with ID " << e->get_id() << " added to vertex with ID " << this->id << std::endl;
     }
-
-    void vertex::set_city(int cu){
-        this->city=cu;
-        this->city_type = static_cast<enum city>(cu);
-    }
+//
+//    void vertex::set_city(int cu){
+//        this->city=cu;
+//        this->city_type = static_cast<enum city>(cu);
+//    }
     std::string vertex::set_player_id(std::string id){
         this->player_id=id;
         return id;
