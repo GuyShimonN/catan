@@ -24,6 +24,7 @@ namespace ariel {
 
         std::string get_name() const;
 
+        int get_num_resources() const;
         int getVictoryPoints() const;
 
         void addVictoryPoints(int points);

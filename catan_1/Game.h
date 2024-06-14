@@ -42,6 +42,7 @@ namespace ariel {
          void chack_largest_army(Player &player);
          int max_knights;
          bool knight;
+       void chack_7();
 
 
     };

@@ -13,7 +13,9 @@ using namespace std;
 namespace ariel {
     Game::Game(Board &board, Player &player1, Player &player2, Player &player3)
             : board(board), player1(player1), player2(player2), player3(player3),
-              player_with_most_knights(player1), knight(false) {
+              player_with_most_knights(player1), knight(false)  {
+        round = 0;
+        max_knights = 0;
         players.push_back(&player1);
         players.push_back(&player2);
         players.push_back(&player3);
@@ -179,6 +181,7 @@ namespace ariel {
     bool Game::GameOver() {
         for (auto &player: Game::getPlayers()) {
             if (player->getVictoryPoints() >= 10) {
+//                printWinner();
                 return true;
             }
         }
@@ -217,7 +220,10 @@ namespace ariel {
         if (round < 3 && dice == 7) {
             diceRoll();
         }
-
+        if (dice ==7){
+            chack_7();
+            return;
+        }
         cout << "Dice roll: " << dice << endl;
         for (int i = 0; i < 19; i++) {
             if (board.getTiles()[i].getNumber() == dice) {
@@ -266,7 +272,8 @@ namespace ariel {
                 player.buildCity(board);
             }
             if (option == 4) {
-                if (player.buyDevelopmentCard())add_development_card(player);
+                player.buyDevelopmentCard();
+                chack_largest_army(player);
             }
             if (option == 5) {
                 cout << "player " << player.get_name() << " which player do you want to trade with?" << endl;
@@ -388,8 +395,36 @@ namespace ariel {
         }
     }
 
-    void Game::add_development_card(Player &player) {
-        player.buyDevelopmentCard();
+    void Game::chack_7() {
+        cout << "the dice roll 7" << endl;
+        for(Player* p :players){
+            if (p->get_num_resources() > 7) {
+                int resource_qty = p->get_num_resources() / 2;
+                while (resource_qty > 0) {
+                    p->print_cards();
+                    cout << "player " << p->get_name() << " you have more than 7 resources" << endl;
+                    cout << "player " << p->get_name() << " which resource do you want to discard? you need to remove "
+                         << resource_qty << endl;
+                    cout << "1. wood" << endl;
+                    cout << "2. brick" << endl;
+                    cout << "3. wool" << endl;
+                    cout << "4. grain" << endl;
+                    cout << "5. ore" << endl;
+                    int resource;
+                    cin >> resource;
+                    if (p->get_resource_sp(resource - 1) == 0) {
+                        cout << "player " << p->get_name() << " does not have this resource" << endl;
+                        continue;
+                    }
+                    p->removeResource(Resource::Type(resource - 1), 1);
+                    cout << "player " << p->get_name() << " discard " << 1 << " " << Resource::Type(resource - 1)
+                         << endl;
+                    resource_qty--;
+
+                }
+            }
+        }
+
     }
 
     bool Game::useDevelopmentCard(Player &player) {
@@ -417,7 +452,7 @@ namespace ariel {
             }
         }
         if (option == 4) {
-            if (player.getDevelopmentCards()[2] > 0) {
+            if (player.getDevelopmentCards()[3] > 0) {
                 cout << "whitch resource do you want to take from the other player?" << endl;
                 cout << "1. wood" << endl;
                 cout << "2. brick" << endl;
@@ -437,7 +472,7 @@ namespace ariel {
                              << Resource::Type(resource - 1) << endl;
                     }
                 }
-                player.getDevelopmentCards()[2]--;
+                player.getDevelopmentCards()[3]--;
                 return true;
             } else {
                 cout << "invalid option" << endl;
@@ -445,11 +480,14 @@ namespace ariel {
             }
         }
         if (option == 3) {
-            if (player.getDevelopmentCards()[3] > 0) {
-                player.addResource(Resource::WOOD, 1);
-                player.addResource(Resource::BRICK, 1);
-                player.getDevelopmentCards()[3]--;
-                bild_road(player);
+            if (player.getDevelopmentCards()[2] > 0) {
+                for(int i=0;i<2;i++) {
+                    player.addResource(Resource::WOOD, 1);
+                    player.addResource(Resource::BRICK, 1);
+                    bild_road(player);
+                }
+                player.getDevelopmentCards()[2]--;
+                return true;
             } else {
                 cout << "invalid option" << endl;
                 return false;

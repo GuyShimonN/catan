@@ -9,6 +9,8 @@
 namespace ariel {
 
     Player::Player(std::string playerName) : name(playerName), victoryPoints(0) {
+        developmentCards = std::vector<int>(5, 0);
+
         // Resize the vector to accommodate all resource types
         resources.resize(static_cast<size_t>(60),
                          0);  // Assuming TOTAL_RESOURCES is a valid enum value or constant that reflects the total number of resources.
@@ -120,9 +122,9 @@ namespace ariel {
                 developmentCards[KNIGHT]++;
                 std::cout << "Development card KNIGHT bought." << std::endl;
             } else if (random == 1) {
-                developmentCards[VICTORY_POINT];
+                developmentCards[VICTORY_POINT]++;
                 addVictoryPoints(1);
-                std::cout << "Development card bought. Total victory points: " << victoryPoints << std::endl;
+                std::cout << "Development card bought VICTORY POINT. Total victory points: " << victoryPoints << std::endl;
             } else if (random == 2) {
                 developmentCards[ROAD_BUILDING]++;
                 std::cout << "Development card ROAD_BUILDING bought." << std::endl;
@@ -154,16 +156,7 @@ namespace ariel {
         std::cout << "Trade completed." << std::endl;
         print_cards();
         other.print_cards();
-//        if (removeResource(give, giveQty) && other.removeResource(receive, receiveQty)) {
-//            addResource(receive, receiveQty);
-//            other.addResource(give, giveQty);
-//            std::cout << "Trade completed." << std::endl;
-//        } else {
-//            std::cout << "Trade failed due to insufficient resources." << std::endl;
-//            // Reverse the resource removal if trade fails
-//            addResource(give, giveQty);
-//            other.addResource(receive, receiveQty);
-//        }
+
     }
 
     int Player::longestRoad() {
@@ -386,5 +379,13 @@ namespace ariel {
             }
         }
     }
+    int Player::get_num_resources() const{
+        int sum = 0;
+        for (size_t i = 0; i < resources.size(); i++) {
+            sum += resources[i];
+        }
+        return sum;
+    }
+
 
 }
