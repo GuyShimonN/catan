@@ -67,8 +67,6 @@ namespace ariel {
 
     }
 
-
-
     void Player::buildCity(Board &b) {
         std::set<int> intSet;
         std::cout << "the option for building a city is: " << std::endl;
@@ -161,6 +159,7 @@ namespace ariel {
             return false;
         }
     }
+
     void Player::trade(Player &other, Resource::Type give, int giveQty, Resource::Type receive, int receiveQty) {
         if (!(valid_resource(give, giveQty) && other.valid_resource(receive, receiveQty))) {
             std::cout << "Trade failed due to insufficient resources." << std::endl;
@@ -222,7 +221,6 @@ namespace ariel {
         std::cout << "Ore: " << resources[Resource::ORE] << std::endl;
     }
 
-
     bool Player::printPossibleSettlements(Board &board) {
         int sum = 0;
         std::cout << "Player " << name << " can build a settlement at the following vertices:" << std::endl;
@@ -259,8 +257,6 @@ namespace ariel {
         }
         return true;
     }
-
-
 
     bool Player::valid_settlement(Board &b, std::set<int> &intSet) {
         bool flagg = false;
@@ -355,6 +351,7 @@ namespace ariel {
         return true;
 
     }
+
     void Player:: printinfo(){
         std::cout << "Player " << name << " has the following resources:" << std::endl;
         std::cout << "Wood: " << resources[Resource::WOOD] << std::endl;
@@ -380,6 +377,7 @@ namespace ariel {
             std::cout << "Road: " << e->get_id() << std::endl;
         }
     }
+
     void Player::printDevelopmentCards() {
         std::cout << "Player " << name << " has the following development cards:" << std::endl;
         for (size_t i = 0; i < developmentCards.size(); i++) {
@@ -396,6 +394,7 @@ namespace ariel {
             }
         }
     }
+
     int Player::get_num_resources() const{
         int sum = 0;
         for (size_t i = 0; i < resources.size(); i++) {

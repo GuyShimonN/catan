@@ -5,7 +5,6 @@
 #include <vector>
 #include "Resource.hpp"
 #include "DevelopmentCard.h"
-//#include "Building.h"
 #include <string>
 #include "Board.h"
 #include "vertex.h"
@@ -63,8 +62,6 @@ namespace ariel {
         int victoryPoints;
         std::vector<int> resources;
         std::vector<int> developmentCards;
-//        std::vector<Building> buildings;
-//        std::vector<Road> roads;
         std::vector<ariel::edge*> edges;
         std::vector<ariel::vertex*> vertexes;
         int DFS(edge* current, std::unordered_set<edge*>& visited);
