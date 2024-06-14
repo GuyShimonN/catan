@@ -14,6 +14,17 @@ namespace ariel {
     Game::Game(Board &board, Player &player1, Player &player2, Player &player3)
             : board(board), player1(player1), player2(player2), player3(player3),
               player_with_most_knights(player1), knight(false)  {
+        for (int i = 0; i < 14; i++) {
+            dev_cards.push_back(0); // 0 represents KNIGHT
+        }
+        for (int i = 0; i < 5; i++) {
+            dev_cards.push_back(1); // 1 represents VICTORY_POINT
+        }
+        for (int i = 0; i < 2; i++) {
+            dev_cards.push_back(2); // 2 represents ROAD_BUILDING
+            dev_cards.push_back(3); // 3 represents MONOPOLY
+            dev_cards.push_back(4); // 4 represents YEAR_OF_PLENTY
+        }
         round = 0;
         max_knights = 0;
         players.push_back(&player1);
@@ -272,7 +283,7 @@ namespace ariel {
                 player.buildCity(board);
             }
             if (option == 4) {
-                player.buyDevelopmentCard();
+                player.buyDevelopmentCard(dev_cards);
                 chack_largest_army(player);
             }
             if (option == 5) {

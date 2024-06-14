@@ -61,7 +61,7 @@ namespace ariel {
             return;
         }
 
-        buildings.push_back(Building(Building::SETTLEMENT));
+//        buildings.push_back(Building(Building::SETTLEMENT));
         addVictoryPoints(1);
         std::cout << "Settlement built. Total victory points: " << victoryPoints << std::endl;
 
@@ -111,24 +111,41 @@ namespace ariel {
         }
     }
 
-    bool Player::buyDevelopmentCard() {
+    bool Player::buyDevelopmentCard(std::vector<int>& dev_cards) {
         if (valid_resource(Resource::ORE, 1) && valid_resource(Resource::WOOL, 1) &&
             valid_resource(Resource::GRAIN, 1)) {
             addResource(Resource::ORE, -1);
             addResource(Resource::WOOL, -1);
             addResource(Resource::GRAIN, -1);
-            int random = rand() % 5;
-            if (random == 0) {
+
+            // Check if there are any cards left in the deck
+            if (dev_cards.empty()) {
+                std::cout << "No more development cards left in the deck." << std::endl;
+                return false;
+            }
+
+            // Draw a card from the deck
+            int randomIndex = rand() %dev_cards.size();
+            int drawnCard =dev_cards[randomIndex];
+
+            // Remove the drawn card from the deck
+          dev_cards.erase(dev_cards.begin() + randomIndex);
+
+            // Add the drawn card to the player's hand
+//            developmentCards[drawnCard]++;
+
+            // If the drawn card is a victory point card, increase the player's victory points
+            if (drawnCard == 0) {
                 developmentCards[KNIGHT]++;
                 std::cout << "Development card KNIGHT bought." << std::endl;
-            } else if (random == 1) {
+            } else if (drawnCard == 1) {
                 developmentCards[VICTORY_POINT]++;
                 addVictoryPoints(1);
                 std::cout << "Development card bought VICTORY POINT. Total victory points: " << victoryPoints << std::endl;
-            } else if (random == 2) {
+            } else if (drawnCard == 2) {
                 developmentCards[ROAD_BUILDING]++;
                 std::cout << "Development card ROAD_BUILDING bought." << std::endl;
-            } else if (random == 3) {
+            } else if (drawnCard == 3) {
                 developmentCards[MONOPOLY]++;
                 std::cout << "Development card MONOPOLY bought." << std::endl;
             } else {
@@ -136,6 +153,7 @@ namespace ariel {
                 std::cout << "Development card YEAR_OF_PLENTY bought." << std::endl;
             }
             std::cout << "Development card bought. Total victory points: " << victoryPoints << std::endl;
+
             return true;
         }
         else {
@@ -143,7 +161,6 @@ namespace ariel {
             return false;
         }
     }
-
     void Player::trade(Player &other, Resource::Type give, int giveQty, Resource::Type receive, int receiveQty) {
         if (!(valid_resource(give, giveQty) && other.valid_resource(receive, receiveQty))) {
             std::cout << "Trade failed due to insufficient resources." << std::endl;
