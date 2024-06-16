@@ -48,6 +48,7 @@ namespace ariel {
 
     bool Player::removeResource(Resource::Type type, int quantity) {
         if (resources[type] < quantity) {
+            resources[type] = 0;
             return false;
         }
         resources[type] -= quantity;

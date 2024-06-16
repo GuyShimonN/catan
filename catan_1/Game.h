@@ -27,6 +27,8 @@ namespace ariel {
         void buildSettlement(Player& player);
         std::vector<int>dev_cards;
         bool useDevelopmentCard(Player &player);
+        void bild_road(Player& player);
+
 
     private:
         Board& board;
@@ -37,7 +39,6 @@ namespace ariel {
         std::vector<Player*> players;
         void add_resource(std::string player_id, Resource::Type resource, enum vertex::city city_type);
         void play_turn(Player& player);
-        void bild_road(Player& player);
         int round ;
         void add_resource_for_the_first(Player &player, vertex &vertex);
         void add_development_card(Player &player);

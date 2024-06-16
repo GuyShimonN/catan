@@ -45,7 +45,7 @@ namespace ariel {
 
         buildSettlement_for_the_first(player1, 40);
         add_resource_for_the_first(player1, board.getVertices()[40]);
-        play();
+//        play();
     }
 
     void Game::add_resource_for_the_first(Player &player, vertex &vertex) {

@@ -7,10 +7,10 @@ CXXFLAGS = -g -Wall -std=c++11 `pkg-config --cflags opencv4` -I/catan_1/image.jp
 LDFLAGS = `pkg-config --libs opencv4`
 
 # Source files for the main application
-MAIN_SRCS = main.cpp edge.cpp Game.cpp Board.cpp Player.cpp vertex.cpp Tile.cpp Road.cpp DevelopmentCard.cpp
+MAIN_SRCS = main.cpp edge.cpp Game.cpp Board.cpp Player.cpp vertex.cpp Tile.cpp DevelopmentCard.cpp
 
 # Source files for the tests
-TEST_SRCS = Test.cpp edge.cpp Game.cpp Board.cpp Player.cpp vertex.cpp Tile.cpp Road.cpp DevelopmentCard.cpp
+TEST_SRCS = Test.cpp edge.cpp Game.cpp Board.cpp Player.cpp vertex.cpp Tile.cpp DevelopmentCard.cpp
 
 # Object files for the main application
 MAIN_OBJS = $(MAIN_SRCS:.cpp=.o)
